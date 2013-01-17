@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Vozrozhdenie Project Reference Document</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="Vozrozhdenie Project Reference Document"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2013-01-16 Wed"/>
+<meta name="author" content="Cliff Wulfman"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012  Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">Vozrozhdenie Project Reference Document</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 METS Profile</a>
+<ul>
+<li><a href="#sec-1-1">1.1 &lt;metsHdr&gt;</a></li>
+<li><a href="#sec-1-2">1.2 &lt;dmdSec&gt;</a></li>
+<li><a href="#sec-1-3">1.3 &lt;amdSec&gt;</a></li>
+<li><a href="#sec-1-4">1.4 &lt;fileSec&gt;</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-3">
+<h3 id="sec-1"><span class="section-number-3">1</span> METS Profile</h3>
+<div class="outline-text-3" id="text-1">
+
+<p>   The metadata for each issue shall be encapsulated in a METS
+   record.  A skeleton sample of such a record is the following:
+</p>
+
+
+
+<pre class="src src-xml">&lt;?<span style="color: #346604;">xml</span> <span style="color: #b35000;">version</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">1.0</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">encoding</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">UTF-8</span><span style="color: #5c3566;">"</span>?&gt;
+&lt;<span style="color: #a40000;">mets</span> <span style="color: #75507b;">xmlns</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">http://www.loc.gov/METS/</span><span style="color: #5c3566;">"</span>
+      <span style="color: #75507b;">xmlns</span>:<span style="color: #b35000;">xlink</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">http://www.w3.org/1999/xlink</span><span style="color: #5c3566;">"</span>
+      <span style="color: #75507b;">xmlns</span>:<span style="color: #b35000;">xsi</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">http://www.w3.org/2001/XMLSchema-instance</span><span style="color: #5c3566;">"</span>
+      <span style="color: #75507b;">xsi</span>:<span style="color: #b35000;">schemaLocation</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd</span><span style="color: #5c3566;">"</span> 
+      <span style="color: #b35000;">TYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">Newspaper</span><span style="color: #5c3566;">"</span>
+      <span style="color: #b35000;">OBJID</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">urn:PUL:newspaper:vozrozhdenie_1925-06-03_01</span><span style="color: #5c3566;">"</span>
+      <span style="color: #b35000;">LABEL</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">vozrozhdenie_1925-06-03_01</span><span style="color: #5c3566;">"</span>&gt;
+  &lt;<span style="color: #a40000;">metsHdr</span>&gt;
+    &lt;<span style="color: #a40000;">agent</span> <span style="color: #b35000;">ROLE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">CREATOR</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">TYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">ORGANIZATION</span><span style="color: #5c3566;">"</span>&gt;
+      &lt;<span style="color: #a40000;">name</span>&gt;Princeton University Library, Digital Initiatives&lt;/<span style="color: #a40000;">name</span>&gt;
+    &lt;/<span style="color: #a40000;">agent</span>&gt;
+    &lt;<span style="color: #a40000;">metsDocumentID</span> <span style="color: #b35000;">TYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">URN</span><span style="color: #5c3566;">"</span>&gt;urn:PUL:newspaper:td:vozrozhdenie_1925-06-03_01&lt;/<span style="color: #a40000;">metsDocumentID</span>&gt;
+  &lt;/<span style="color: #a40000;">metsHdr</span>&gt;
+  &lt;<span style="color: #a40000;">dmdSec</span> <span style="color: #b35000;">ID</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">dmd1</span><span style="color: #5c3566;">"</span>&gt;
+    &lt;<span style="color: #a40000;">mdWrap</span> <span style="color: #b35000;">MDTYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">MODS</span><span style="color: #5c3566;">"</span>&gt;
+      &lt;<span style="color: #a40000;">xmlData</span>&gt;
+        <span style="color: #5f615c; font-style: italic;">&lt;!--</span><span style="color: #5f615c; font-style: italic;"> MODS record goes here </span><span style="color: #5f615c; font-style: italic;">--&gt;</span>
+      &lt;/<span style="color: #a40000;">xmlData</span>&gt;
+    &lt;/<span style="color: #a40000;">mdWrap</span>&gt;
+  &lt;/<span style="color: #a40000;">dmdSec</span>&gt;
+
+    <span style="color: #5f615c; font-style: italic;">&lt;!--</span><span style="color: #5f615c; font-style: italic;">Use a single administrative section (&lt;amdSec&gt;) as a </span>
+<span style="color: #5f615c; font-style: italic;">        wrapper for the technical metadata for all the images</span><span style="color: #5f615c; font-style: italic;">--&gt;</span>
+  &lt;<span style="color: #a40000;">amdSec</span>&gt;
+    &lt;<span style="color: #a40000;">techMD</span> <span style="color: #b35000;">ID</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">techmd1</span><span style="color: #5c3566;">"</span>&gt;
+      <span style="color: #5f615c; font-style: italic;">&lt;!--</span><span style="color: #5f615c; font-style: italic;"> technical metadata (MIX) for first image </span><span style="color: #5f615c; font-style: italic;">--&gt;</span>
+      &lt;<span style="color: #a40000;">mdWrap</span> <span style="color: #b35000;">MDTYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">NISOIMG</span><span style="color: #5c3566;">"</span>&gt;
+        <span style="color: #5f615c; font-style: italic;">&lt;!--</span><span style="color: #5f615c; font-style: italic;"> The technical metadata docWorks provides goes here </span><span style="color: #5f615c; font-style: italic;">--&gt;</span>
+      &lt;/<span style="color: #a40000;">mdWrap</span>&gt;
+    &lt;/<span style="color: #a40000;">techMD</span>&gt;
+    &lt;<span style="color: #a40000;">techMD</span> <span style="color: #b35000;">ID</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">techmd2</span><span style="color: #5c3566;">"</span>&gt;
+      <span style="color: #5f615c; font-style: italic;">&lt;!--</span><span style="color: #5f615c; font-style: italic;"> technical metadata for the second image </span><span style="color: #5f615c; font-style: italic;">--&gt;</span>
+      &lt;<span style="color: #a40000;">mdWrap</span> <span style="color: #b35000;">MDTYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">NISOIMG</span><span style="color: #5c3566;">"</span>/&gt;
+    &lt;/<span style="color: #a40000;">techMD</span>&gt;
+
+    <span style="color: #5f615c; font-style: italic;">&lt;!--</span><span style="color: #5f615c; font-style: italic;"> &lt;techMD&gt; elements for remaining image files </span><span style="color: #5f615c; font-style: italic;">--&gt;</span>
+  &lt;/<span style="color: #a40000;">amdSec</span>&gt;
+
+
+
+  &lt;<span style="color: #a40000;">fileSec</span>&gt;
+    &lt;<span style="color: #a40000;">fileGrp</span> <span style="color: #b35000;">ID</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">IMGGRP</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">USE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">Images</span><span style="color: #5c3566;">"</span>&gt;
+
+      <span style="color: #5f615c; font-style: italic;">&lt;!--</span><span style="color: #5f615c; font-style: italic;"> Note that the AMDID attribute contains the ID of the</span>
+<span style="color: #5f615c; font-style: italic;">      &lt;techMD&gt; element corresponding to the file. Note, too,</span>
+<span style="color: #5f615c; font-style: italic;">      the use of the GROUPID attribute, which groups together</span>
+<span style="color: #5f615c; font-style: italic;">      the image file and its corresponding ALTO file. </span><span style="color: #5f615c; font-style: italic;">--&gt;</span>
+
+      &lt;<span style="color: #a40000;">file</span> <span style="color: #b35000;">ID</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">IMG001</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">AMDID</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">techmd1</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">GROUPID</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">page1</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">MIMETYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">image/jp2</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">CHECKSUM</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">xxxx</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">CHECKSUMTYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">SHA-1</span><span style="color: #5c3566;">"</span>&gt;
+        &lt;<span style="color: #a40000;">FLocat</span> <span style="color: #b35000;">LOCTYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">URL</span><span style="color: #5c3566;">"</span> <span style="color: #75507b;">xlink</span>:<span style="color: #b35000;">href</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">file://.vozrozhdenie_1925-06-03_01_001.jp2</span><span style="color: #5c3566;">"</span>/&gt;
+      &lt;/<span style="color: #a40000;">file</span>&gt;
+      &lt;<span style="color: #a40000;">file</span> <span style="color: #b35000;">ID</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">IMG002</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">AMDID</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">techmd2</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">GROUPID</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">page2</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">MIMETYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">image/jp2</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">CHECKSUM</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">xxxx</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">CHECKSUMTYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">SHA-1</span><span style="color: #5c3566;">"</span>&gt;
+        &lt;<span style="color: #a40000;">FLocat</span> <span style="color: #b35000;">LOCTYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">URL</span><span style="color: #5c3566;">"</span> <span style="color: #75507b;">xlink</span>:<span style="color: #b35000;">href</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">file://.vozrozhdenie_1925-06-03_01_002.jp2</span><span style="color: #5c3566;">"</span>/&gt;
+      &lt;/<span style="color: #a40000;">file</span>&gt;
+    &lt;/<span style="color: #a40000;">fileGrp</span>&gt;
+
+    &lt;<span style="color: #a40000;">fileGrp</span> <span style="color: #b35000;">ID</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">ALTOGRP</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">USE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">OCR</span><span style="color: #5c3566;">"</span>&gt;
+      &lt;<span style="color: #a40000;">file</span> <span style="color: #b35000;">ID</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">ALTO001</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">GROUPID</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">page1</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">MIMETYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">text/xml</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">CHECKSUM</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">xxxx</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">CHECKSUMTYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">SHA-1</span><span style="color: #5c3566;">"</span>&gt;
+        &lt;<span style="color: #a40000;">FLocat</span> <span style="color: #b35000;">LOCTYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">URL</span><span style="color: #5c3566;">"</span> <span style="color: #75507b;">xlink</span>:<span style="color: #b35000;">href</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">file://.vozrozhdenie_1925-06-03_01_001.alto.xml</span><span style="color: #5c3566;">"</span>/&gt;
+      &lt;/<span style="color: #a40000;">file</span>&gt;
+      &lt;<span style="color: #a40000;">file</span> <span style="color: #b35000;">ID</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">ALTO002</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">GROUPID</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">page2</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">MIMETYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">text/xml</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">CHECKSUM</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">xxxx</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">CHECKSUMTYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">SHA-1</span><span style="color: #5c3566;">"</span>&gt;
+        &lt;<span style="color: #a40000;">FLocat</span> <span style="color: #b35000;">LOCTYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">URL</span><span style="color: #5c3566;">"</span> <span style="color: #75507b;">xlink</span>:<span style="color: #b35000;">href</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">file://.vozrozhdenie_1925-06-03_01_002.alto.xml</span><span style="color: #5c3566;">"</span>/&gt;
+      &lt;/<span style="color: #a40000;">file</span>&gt;
+    &lt;/<span style="color: #a40000;">fileGrp</span>&gt;
+  &lt;/<span style="color: #a40000;">fileSec</span>&gt;
+  &lt;<span style="color: #a40000;">structMap</span> <span style="color: #b35000;">TYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">PHYSICAL</span><span style="color: #5c3566;">"</span>&gt;
+    &lt;<span style="color: #a40000;">div</span>/&gt;
+  &lt;/<span style="color: #a40000;">structMap</span>&gt;
+  &lt;<span style="color: #a40000;">structMap</span> <span style="color: #b35000;">TYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">LOGICAL</span><span style="color: #5c3566;">"</span>&gt;
+    &lt;<span style="color: #a40000;">div</span>/&gt;
+  &lt;/<span style="color: #a40000;">structMap</span>&gt;
+&lt;/<span style="color: #a40000;">mets</span>&gt;
+</pre>
+
+
+<p>
+   The root element &lt;mets&gt; contains these attributes:
+</p><dl>
+<dt>TYPE</dt><dd>the fixed value <i>Newspaper</i>
+</dd>
+<dt>OBJID</dt><dd>the URN for the issue
+</dd>
+<dt>LABEL</dt><dd>the <i>issueid</i>
+</dd>
+</dl>
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-4">
+<h4 id="sec-1-1"><span class="section-number-4">1.1</span> &lt;metsHdr&gt;</h4>
+<div class="outline-text-4" id="text-1-1">
+
+<p>    The &lt;metsHdr&gt; element shall contain two elements:
+</p><ul>
+<li id="sec-1-1-1">&lt;agent&gt;<br/>
+     A constant value for all records:
+
+
+
+<pre class="src src-xml">&lt;<span style="color: #a40000;">agent</span> <span style="color: #b35000;">ROLE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">CREATOR</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">TYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">ORGANIZATION</span><span style="color: #5c3566;">"</span>&gt;
+ &lt;<span style="color: #a40000;">name</span>&gt;Princeton University Library, Digital Initiatives&lt;/<span style="color: #a40000;">name</span>&gt;
+&lt;/<span style="color: #a40000;">agent</span>&gt;
+</pre>
+
+</li>
+</ul>
+<ul>
+<li id="sec-1-1-2">&lt;metsDocumentID TYPE="URN"&gt;<br/>
+    Contains a string whose contents is composed as follows:
+
+
+
+<pre class="example">PREFIX:ISSUID
+</pre>
+
+<p>
+     Where <i>PREFIX</i> is the following fixed value:
+</p>
+
+
+<pre class="example">urn:PUL:newspaper:td:
+</pre>
+
+<p>
+     And <i>ISSUEID</i> is the issue identifier, computed using the rules
+     above.
+</p></li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-4">
+<h4 id="sec-1-2"><span class="section-number-4">1.2</span> &lt;dmdSec&gt;</h4>
+<div class="outline-text-4" id="text-1-2">
+
+<p>    The record contains a single &lt;dmdSec&gt; element with an ID
+    attribute of "dmd1"' it contains an embedded MODS record for the
+    issue (described below).
+</p></div>
+
+</div>
+
+<div id="outline-container-1-3" class="outline-4">
+<h4 id="sec-1-3"><span class="section-number-4">1.3</span> &lt;amdSec&gt;</h4>
+<div class="outline-text-4" id="text-1-3">
+
+<p>    The &lt;amdSec&gt; contains a <i>&lt;techMD&gt;</i> element for each image file (a
+    &lt;mix&gt; record).
+</p></div>
+
+</div>
+
+<div id="outline-container-1-4" class="outline-4">
+<h4 id="sec-1-4"><span class="section-number-4">1.4</span> &lt;fileSec&gt;</h4>
+<div class="outline-text-4" id="text-1-4">
+
+<p>    The fileSec comprises two <i>&lt;fileGrp&gt;</i> elements: one for the
+    images and one for the ALTO records.
+</p><ul>
+<li id="sec-1-4-1">&lt;fileGrp ID="IMGGRP" USE="Images"&gt;<br/>
+     The <i>IMGGRP</i> file group contains &lt;file&gt; elements that indicate
+     the location of each image file, with attributes linking the
+     file to the corresponding technical metadata and to the
+     corresponding ALTO file.
+<ul>
+<li id="sec-1-4-1-1">&lt;file&gt;<br/>
+<dl>
+<dt><i>ID</i></dt><dd>a unique XML id
+</dd>
+<dt>AMDID</dt><dd>the ID of the <i>&lt;techmd&gt;</i> element corresponding to the
+                image file
+</dd>
+<dt>GROUPID</dt><dd>an ID that links an image file to an ALTO file.
+                  The image file for a page and the ALTO file
+                  containing the OCR output for that page share an id
+                  (conventionally named <i>pageN</i>, where N is a
+                  sequence number).
+</dd>
+<dt>MIMETYPE</dt><dd>the constant "image/jp2" for jpeg2000 images
+</dd>
+<dt>CHECKSUM</dt><dd>the checksum of the file, according to the
+                   algorithm specified in <i>CHECKSUMTYPE</i>
+</dd>
+<dt>CHECKSUMTYPE</dt><dd>the algorithm used to compute the checksum;
+                       usually SHA-1.
+</dd>
+</dl>
+
+
+
+<ul>
+<li id="sec-1-4-1-1-1">&lt;FLocat&gt;<br/>
+      The METS element indicating the actual file location.
+<dl>
+<dt>LOCTYPE</dt><dd>the constant <i>URL</i>
+</dd>
+<dt>xlink:href</dt><dd>the URL of the file.  For this project, it will
+                      be a local path.  For example:
+
+
+
+<pre class="example">file://./vozrozhdenie_1925-06-03_01_001.jp2
+</pre>
+
+</dd>
+</dl>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li id="sec-1-4-2">&lt;fileGrp ID="ALTOGRP" USE="OCR"&gt;<br/>
+     Like the <i>&lt;fileGrp&gt;</i> for images, but corresponding to the ALTO files.
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2013-01-16 Wed</p>
+<p class="author">Author: Cliff Wulfman</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>
