@@ -403,35 +403,94 @@
    #+END_SRC
 
 ** <relatedItem type="constituent">
-   This is the element used to encode the titles and bylines of
-   articles and advertisements.
-   - The /ID/ attribute may be any valid XML ID (it must begin with
-     a character).  By convention, the ID will begin with the letter
-     /c/ followed by a two-or three-digit sequential number.
-   - The /<title>/ is transcribed as it appears on the page.
-   - The /<name>/ is transcribed as it appears on the page and is
+   This is the element used to encode descriptions of newspaper
+   content: the titles of article, for example, and the name of the
+   person who wrote it (or persons, if there are more than one), and
+   on what page or pages it appears. <relatedItem type="constituent">
+   is also used to to indicate the presence of advertisements in the
+   paper (although we do not attempt to capture titles and creators
+   for ads).
+
+   Here is a hypothetical example, in English:
+   #+BEGIN_SRC xml
+<relatedItem type="constituent" ID="c17">
+  <titleInfo>
+   <title>A Modest Proposal</title>
+  </titleInfo>
+  <name type="personal">
+   <displayForm>Jonathan Swift</displayForm>
+   <role>
+    <roleTerm type="code">cre</roleTerm>
+   </role>
+  </name>
+  <language>
+   <languageTerm type="code" authority="iso639-2b">eng</languageTerm>
+  </language>
+  <part>
+   <extent unit="page">
+    <start>25</start>
+    <end>29</end>
+   </extent>
+  </part>
+  <genre type="CCS">TextContent</genre>
+ </relatedItem>
+   #+END_SRC
+
+   - The /type/ attribute has the value /constituent/, because this
+     related item is a constituent (a part) of the newspaper.
+
+   - The /ID/ attribute may be any valid XML ID (it must begin with a
+     character).  By convention, the ID will begin with the letter /c/
+     followed by a sequential number.  (The docWorks processing flow
+     seems to generate the /ID/ attributes.)  This attribute links the
+     description to a <div> element in the METS logical structMap.
+
+*** <titleInfo>
+    The <title> is transcribed as it appears on the page.  For this
+    project, we do not distinguish non-sorting initial words (like
+    /a/, /an/, and /the/ in English) from the rest of the title and
+    place the entire title in the <title> element.
+*** <name>
+   - The <name> elements (there may be more than one) are used to
+     record the names of the people or organizations who are
+     responsible for the constituent -- usually, this is simply the
+     author of the piece.
+
+     The /<name>/ is transcribed as it appears on the page and is
      encoded in the /<displayForm>/ element.  All /<name>/ elements
      shall include a /<role>/ element, which shall designate the
-     generic role, /cre/, in the /<roleTerm>/ subelement.  For
-     example,
-     #+BEGIN_SRC xml
-      <name type="personal">
-       <displayForm>???????</displayForm>
-       <role>
-	<roleTerm type="code">cre</roleTerm>
-       </role>
-      </name>
-     #+END_SRC
+     generic role, /cre/, in the /<roleTerm>/ subelement.
 
    - The <language> element shall contain the subelement
      /<languageTerm>/, a three-letter code derived from the ISO639-2
      standard, found at http://www.loc.gov/standards/iso639-2/.  The
-     code form should be used.
+     code form should be used.  In /Vozrozhdenie/, this will almost
+     always be /rus/.
 
    - The <extent> records the page or pages on which the term appears:
-     -  a single page number for an item that appears on only one page
-      - a range (n-m) for an item that appears on sequential pages
-      - a series (n; m) for an item that appears on non-sequential pages
-      - a combination of the above (e.g., /1-2; 5/ for an article
-	that starts on page one, continues on page 2, and then skips
-	to page 5).
+     - when the item appears on a single page ::
+	  encode the page number as a solitary /<start>/ element.
+     - when the item appears on multiple sequential pages :: 
+	  encode the first page in a /<start>/ element and the last
+          page in an /<end>/ element.
+     - when the item appears on non-sequential pages :: 
+	  encode the pages as a series in a /<list>/ element, as in
+	  #+BEGIN_SRC xml
+	  <extent unit="page">
+           <list>3; 5</list>
+          </extent>
+	  #+END_SRC
+
+     - when the item appears on a mi of sequential and non-sequential pages :: 
+          #+BEGIN_SRC xml
+	  <extent unit="page">
+           <list>1-2; 5</list>
+          </extent>
+          #+END_SRC
+       For an article that starts on page 1, continues on page 2, and
+       then skips to page 5.
+
+*** <genre>
+    The /<genre>/ is determined from the docWorks configuration: for
+    articles and other editorial content, it will be /TextContent/;
+    for advertisements, is will be /sponsoredAd/.
