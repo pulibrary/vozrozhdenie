@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mods xmlns="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/mods/v3/mods-3-4.xsd">
+ <recordInfo>
+  <recordIdentifier>urn:PUL:newspaper:dmd:vozrozhdenie_1925-06-03_01</recordIdentifier>
+ </recordInfo>
+ <identifier type="PUL">urn:PUL:newspaper:vozrozhdenie_1925-06-03_01</identifier>
+ <language>
+  <languageTerm type="code" authority="iso639-2b">rus</languageTerm>
+ </language>
+ <titleInfo lang="rus">
+  <title lang="rus" script="??">ВОЗРОЖДЕНIЕ</title>
+ </titleInfo>
+ <originInfo>
+  <dateIssued keyDate="yes" encoding="iso8601">1926-06-03</dateIssued>
+ </originInfo>
+ <part type="issue">
+  <detail type="number">
+   <number>1</number>
+  </detail>
+ </part>
+ 
+ <relatedItem type="host" xlink:type="simple" xlink:href="urn:PUL:newspaper:vozrozhdenie">
+  <recordInfo>
+   <recordIdentifier>urn:PUL:newspaper:dmd:vozrozhdenie</recordIdentifier>
+  </recordInfo>
+ </relatedItem>
+ 
+ <relatedItem type="constituent" ID="c1">
+  <titleInfo lang="rus" script="??">
+   <title>ПРАВОСЛАВНЫЙ КАЛЕНДАРЬ.</title>
+  </titleInfo>
+  <language>
+   <languageTerm type="code" authority="iso639-2b">rus</languageTerm>
+  </language>
+  <part>
+   <extent unit="page">
+    <start>1</start>
+   </extent>
+  </part>
+  <genre type="CCS">TextContent</genre>
+ </relatedItem>
+ 
+ <!-- The rest of the articles and advertisements follow, as <relatedItem type="constituent"> elements. -->
+ 
+</mods>

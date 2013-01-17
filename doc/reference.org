@@ -1,0 +1,437 @@
+#+TITLE:     Vozrozhdenie Project Reference Document
+#+AUTHOR:    Cliff Wulfman
+#+EMAIL:     cwulfman@Princeton.EDU
+#+DATE:      2013-01-16 Wed
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME: 
+#+XSLT:
+
+* Some Details
+  Scope: 28,557 page images
+* Input Files
+  Princeton shot the original pages as 24-bit RGB TIFF files at a
+  resolution of 7200 pixels on the long side, then, to improve OCR,
+  created grayscale derivatives with level adjustments: black 10,
+  white 215, gama 1.15.
+* Output Files
+  DDD will deliver the following objects for ingestion into Veridian:
+
+  - One METS XML file for each issue, conforming with METS schema
+    version 1.9 (http://www.loc.gov/standards/mets/version19/mets.xsd).  See
+    Section N for details of METS use.
+  - One ALTO XML file for each page, conforming with ALTO schema
+    version 2.0.  See Section N for details.
+  - One JPEG 2000 image file for each page.  (See section N)
+  - One PDF file with bookmarks for each issue. (See section N)
+
+  Deliverables shall be sent directly to Princeton for ingestion
+  into Veridian.
+* Identifiers
+  Each newspaper issue shall be assigned an /issue identifier/ (an
+  /issueid/) corresponding to the date of issuance and taking the
+  form /vozrozhdenie_CCYY-MM-DD_II/, where
+
+  - /voz/ is the identifier of the newspaper;
+
+  - /CCYY/ is the year of publication (e.g., 1912);
+
+  - /MM/ is a two-digit number representing the month of publication,
+    where January = 01, February = 02, etc.  If the FolioLine and/or the
+    Masthead indicates a week of publication (e.g., September 8-14,
+    1946), the first date should be used (e.g., September 8).  If no
+    month of publication is specified, MM is omitted.
+
+  - /DD/ is a two-digit number representing the date of publication,
+    (e.g., 01, 02 .. 30, 31).  If no date is specified, DD is
+    omitted;
+
+  - /II/ is a two-digit number representing the issuance number: a
+    calculated number used for times when more than one issue was
+    published on one day (it will usually be 01);
+
+  So, for example, the issue that was published on June 3rd, 1925
+  would have the issue identifier /vozrozhdenie_1925-06-03_01/.
+
+  These issueids shall be used to compose a Universal Resource Name
+  (URN) for each issue:
+
+  #+BEGIN_EXAMPLE
+  urn:PUL:newspaper:issueid
+  #+END_EXAMPLE
+
+  where /urn:PUL:newspaper:/ is a constant and /issueid/ is the
+  issueid of the issue.  For example, the URN for the June 3rd, 1925
+  issue of /Vozrozhdenie/ would have the following URN:
+
+  #+BEGIN_EXAMPLE
+  urn:PUL:newspaper:vozrozhdenie_1925-06-03_01
+  #+END_EXAMPLE
+
+  The same URN scheme shall be used to create identifiers for the
+  metadata records for each issue (see below).
+
+* File Names
+** Image Files
+   Image files shall be named /issueid_nnn.jp2/, where
+   - /issuid/ is the identifier of the issue;
+   - /nnn/ is a three-digit number indicating the location of the
+     image file in the sequence of image files (not necessarily the
+     number printed o the page that has been photographed);
+   - /jp2/ is the conventional file extension for JPEG2000 files.
+
+   For example,
+   #+BEGIN_EXAMPLE
+   vozrozhdenie_1925-06-03_01_001.jp2
+   vozrozhdenie_1925-06-03_01_002.jp2
+   ...
+   #+END_EXAMPLE
+** ALTO Files
+   ALTO files shall be named /issueid_nnn.alto.xml/, where
+   - /issuid/ is the identifier of the issue
+   - /nnn/ is a three-digit number corresponding to the sequence
+     number of the image file to which this ALTO file corresponds
+   - /alto/ indicates the schema used to encode the document
+   - /xml/ indicates the format of the file.
+
+   For example,
+   #+BEGIN_EXAMPLE
+   vozrozhdenie_1925-06-03_01_001.alto.xml
+   vozrozhdenie_1925-06-03_01_002.alto.xml
+   ...
+   #+END_EXAMPLE
+** METS Files
+   METS files shall be named /issueid.mets.xml/, where
+   - /issueid/ is the identifier of the issue
+   - /mets/ indicates the schema used to encode the document
+   - /xml/ indicates the format of the file.
+   
+   For example,
+   #+BEGIN_EXAMPLE
+   vozrozhdenie_1925-06-03_01.mets.xml
+   #+END_EXAMPLE
+** PDF Files
+   PDF files shall be named /issueid.pdf/, where
+   - /issueid/ is the identifier of the issue
+   - /pdf/ indicates the format of the file.
+   
+   For example,
+   #+BEGIN_EXAMPLE
+   vozrozhdenie_1925-06-03_01.pdf
+   #+END_EXAMPLE
+
+
+
+* METS Profile
+   The metadata for each issue shall be encapsulated in a METS
+   record.  A skeleton sample of such a record is the following:
+
+   #+BEGIN_SRC xml
+<?xml version="1.0" encoding="UTF-8"?>
+<mets xmlns="http://www.loc.gov/METS/"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd" 
+      TYPE="Newspaper"
+      OBJID="urn:PUL:newspaper:vozrozhdenie_1925-06-03_01"
+      LABEL="vozrozhdenie_1925-06-03_01">
+  <metsHdr>
+    <agent ROLE="CREATOR" TYPE="ORGANIZATION">
+      <name>Princeton University Library, Digital Initiatives</name>
+    </agent>
+    <metsDocumentID TYPE="URN">urn:PUL:newspaper:td:vozrozhdenie_1925-06-03_01</metsDocumentID>
+  </metsHdr>
+  <dmdSec ID="dmd1">
+    <mdWrap MDTYPE="MODS">
+      <xmlData>
+	<!-- MODS record goes here -->
+      </xmlData>
+    </mdWrap>
+  </dmdSec>
+
+    <!--Use a single administrative section (<amdSec>) as a 
+	wrapper for the technical metadata for all the images-->
+  <amdSec>
+    <techMD ID="techmd1">
+      <!-- technical metadata (MIX) for first image -->
+      <mdWrap MDTYPE="NISOIMG">
+	<!-- The technical metadata docWorks provides goes here -->
+      </mdWrap>
+    </techMD>
+    <techMD ID="techmd2">
+      <!-- technical metadata for the second image -->
+      <mdWrap MDTYPE="NISOIMG"/>
+    </techMD>
+    
+    <!-- <techMD> elements for remaining image files -->
+  </amdSec>
+
+
+
+  <fileSec>
+    <fileGrp ID="IMGGRP" USE="Images">
+
+      <!-- Note that the AMDID attribute contains the ID of the
+      <techMD> element corresponding to the file. Note, too,
+      the use of the GROUPID attribute, which groups together
+      the image file and its corresponding ALTO file. -->
+
+      <file ID="IMG001" AMDID="techmd1" GROUPID="page1" MIMETYPE="image/jp2" CHECKSUM="xxxx" CHECKSUMTYPE="SHA-1">
+	<FLocat LOCTYPE="URL" xlink:href="file://.vozrozhdenie_1925-06-03_01_001.jp2"/>
+      </file>
+      <file ID="IMG002" AMDID="techmd2" GROUPID="page2" MIMETYPE="image/jp2" CHECKSUM="xxxx" CHECKSUMTYPE="SHA-1">
+	<FLocat LOCTYPE="URL" xlink:href="file://.vozrozhdenie_1925-06-03_01_002.jp2"/>
+      </file>
+    </fileGrp>
+
+    <fileGrp ID="ALTOGRP" USE="OCR">
+      <file ID="ALTO001" GROUPID="page1" MIMETYPE="text/xml" CHECKSUM="xxxx" CHECKSUMTYPE="SHA-1">
+	<FLocat LOCTYPE="URL" xlink:href="file://.vozrozhdenie_1925-06-03_01_001.alto.xml"/>
+      </file>
+      <file ID="ALTO002" GROUPID="page2" MIMETYPE="text/xml" CHECKSUM="xxxx" CHECKSUMTYPE="SHA-1">
+	<FLocat LOCTYPE="URL" xlink:href="file://.vozrozhdenie_1925-06-03_01_002.alto.xml"/>
+      </file>
+    </fileGrp>
+  </fileSec>
+  <structMap TYPE="PHYSICAL">
+    <div/>
+  </structMap>
+  <structMap TYPE="LOGICAL">
+    <div/>
+  </structMap>
+</mets>
+   #+END_SRC
+
+   - The top-level <mets> element contains an /OBJID/ attribute whose
+     value is the URN for the issue.
+   - The /TYPE/ attribute has the fixed value /Newspaper/
+   - The <metsHdr> element contains a <metsDocumentID> element whose
+     value is the URN for the METS document itself.
+   - The record contains a single <dmdSec> element with an ID
+     attribute of "dmd1"; this <dmdSec> contains an embedded MODS
+     record for the issue (described below).
+
+** <metsHdr>
+   The <metsHdr> element shall contain two elements:
+
+*** <agent>
+    A constant value for all records:
+    #+BEGIN_SRC xml
+     <agent ROLE="CREATOR" TYPE="ORGANIZATION">
+      <name>Princeton University Library, Digital Initiatives</name>
+     </agent>
+    #+END_SRC
+*** <metsDocumentID TYPE="URN">
+    Composed as follows:
+    #+BEGIN_EXAMPLE
+    <recordIdentifier>PREFIX:ISSUID</recordIdentifier>
+    #+END_EXAMPLE
+    Where /PREFIX/ is the following fixed value:
+    #+BEGIN_EXAMPLE
+    urn:PUL:newspaper:td:
+    #+END_EXAMPLE
+    And /ISSUEID/ is the issue identifier, computed using the rules
+    above.
+
+
+* ALTO Profile
+  For each page, an encoded representation of the layout and the
+  machine-readable text on the page shall be provided, using the
+  ALTO schema, version 2.0 or higher, with the following
+  specifications, adopted from the NDNP:
+
+  - The text shall be encoded in the natural reading order of the
+    language in which the text is written;
+  - Point size and font data to at least the word level shall be included;
+  - The ALTO file shall include bounding-box coordinates to at least
+    the word level;
+  - Non-rectangular blocks shall not be used.  Some illustrations
+    may format as "tight" in the document.
+
+* JPEG2000 Profile
+   To generate a JP2000 using Kakadu, use the following recipe (taken
+   from /The National Digital Newspaper Program (NDNP) Technical
+   Guidelines for Applicants/):
+
+  #+BEGIN_EXAMPLE
+     kdu_compress -i YOURINPUT.pgm -o YOUROUTPUT.jp2 -rate 
+     1,0.84,0.7,0.6,0.5,0.4,0.35,0.3,0.25,0.21,0.18,0.15,0.125,0.1,0.088,0.0 
+     75,0.0625,0.05,0.04419,0.03716,0.03125,0.025,0.0221,0.01858,0.015625 
+     Clevels=6 Stiles={1024,1024} Corder=RLCP
+  #+END_EXAMPLE
+* MODS Profile
+   #+BEGIN_SRC xml
+<?xml version="1.0" encoding="UTF-8"?>
+<mods xmlns="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/mods/v3/mods-3-4.xsd">
+ <recordInfo>
+  <recordIdentifier>urn:PUL:newspaper:dmd:vozrozhdenie_1925-06-03_01</recordIdentifier>
+ </recordInfo>
+ <identifier type="PUL">urn:PUL:newspaper:vozrozhdenie_1925-06-03_01</identifier>
+ <language>
+  <languageTerm type="code" authority="iso639-2b">rus</languageTerm>
+ </language>
+ <titleInfo lang="rus">
+  <title lang="rus" script="??">ВОЗРОЖДЕНIЕ</title>
+ </titleInfo>
+ <originInfo>
+  <dateIssued keyDate="yes" encoding="iso8601">1926-06-03</dateIssued>
+ </originInfo>
+ <part type="issue">
+  <detail type="number">
+   <number>1</number>
+  </detail>
+ </part>
+ 
+ <relatedItem type="host" xlink:type="simple" xlink:href="urn:PUL:newspaper:vozrozhdenie">
+  <recordInfo>
+   <recordIdentifier>urn:PUL:newspaper:dmd:vozrozhdenie</recordIdentifier>
+  </recordInfo>
+ </relatedItem>
+ 
+ <relatedItem type="constituent" ID="c1">
+  <titleInfo lang="rus" script="??">
+   <title>ПРАВОСЛАВНЫЙ КАЛЕНДАРЬ.</title>
+  </titleInfo>
+  <language>
+   <languageTerm type="code" authority="iso639-2b">rus</languageTerm>
+  </language>
+  <part>
+   <extent unit="page">
+    <start>1</start>
+   </extent>
+  </part>
+  <genre type="CCS">TextContent</genre>
+ </relatedItem>
+ 
+ <!-- The rest of the articles and advertisements follow, as <relatedItem type="constituent"> elements. -->
+ 
+</mods>
+   #+END_SRC
+
+** <recordInfo>
+   The <recordInfo> element contains information about the MODS
+   record itself.  It shall contain a <recordIdentifier> element, as
+   below.
+*** <recordIdentifier>
+    The <recordIdentifier> element is the unique identifier for the
+    MODS record itself (not the identifier for the newspaper issue --
+    that is the <identifier> element described below).  It shall have
+    a value composed as follows:
+    #+BEGIN_EXAMPLE
+    PREFIX:ISSUEID
+    #+END_EXAMPLE
+    Where /PREFIX/ is the fixed value
+    #+BEGIN_EXAMPLE
+    urn:PUL:newspaper:dmd:
+    #+END_EXAMPLE
+    and /ISSUEID/ is the issueid of the issue.  For example,
+    #+BEGIN_SRC xml
+    <recordIdentifier>urn:PUL:newspaper:dmd:vozrozhdenie_1925-06-03_01</recordIdentifier>     
+    #+END_SRC
+** <identifier type="PUL">
+   The <identifier> element is used to identify the resource the
+   MODS record describes.  Its value is the resource's /issueid/, as:
+   #+BEGIN_SRC xml
+   <identifier type="PUL">urn:PUL:newspaper:vozrozhdenie_1925-06-03_01</identifier>
+   #+END_SRC
+** <genre>
+   The <genre> element shall always have the fixed value
+   /Newspapers-Issue/.
+** <titleInfo>
+   The <titleInfo> element will always be the following fixed value:
+   #+BEGIN_SRC xml
+   <titleInfo lang="rus">
+    <title lang="rus" script="??">ВОЗРОЖДЕНIЕ</title>
+   </titleInfo>
+   #+END_SRC
+** <originInfo>
+   The <originInfo> element shall contain a single <dateIssued>
+   element that records the date of issuance.
+*** <dateIssued>
+    There will be a single <dateIssued> element in the <originInfo>
+    element, with the /keyDate/ attribute equal to "yes" and the
+    /encoding/ attribute equal to "iso8601".  The value of the
+    element will be the date of issuance, discovered in the
+    masthead, and expressed in the form CCYY-MM-DD, where
+    - /CCYY/ is the year of publication (e.g., 1925)
+    - /MM/ is a two-digit number representing the month of
+      publication, where January = 01, February = 02, etc.  If the
+      FolioLine and/or the Masthead indicates a week of publication
+      (e.g., September 8-14, 1946), the first date should be used
+      (e.g., September 8).  If no month of publication is specified,
+      MM is omitted.
+    - /DD/ is a two-digit number representing the date of
+      publication, (e.g., 01, 02 .. 30, 31).  If no date is
+      specified, DD is omitted.
+
+    So, for example, if the issue was published on June 3rd, 1925,
+    the <dateIssued> element would look like this:
+    #+BEGIN_SRC xml
+    <dateIssued keyDate="yes" encoding="iso8601">1925-06-03</dateIssued>
+    #+END_SRC
+** <part type="issue">
+   The <part type="issue"> element encodes the publication sequence
+   of the issue as recorded by the publisher.  /Vozrozhdenie/ prints
+   an issue number in the upper lefthand corner on the first page of
+   each issue.  E.g.,
+   #+BEGIN_SRC xml
+    <part type="issue">
+     <detail type="number">
+       <number>1</number>
+     </detail>
+    </part>
+   #+END_SRC
+** <relatedItem type="host">
+   This element expresses the newspaper this particular issue
+   belongs to (i.e., the newspaper /Vozrozhdenie/).  It has the
+   following fixed value:
+   #+BEGIN_SRC xml
+    <relatedItem type="host" xlink:type="simple" xlink:href="urn:PUL:newspaper:vozrozhdenie">
+      <recordInfo>
+       <recordIdentifier>urn:PUL:newspaper:dmd:vozrozhdenie</recordIdentifier>
+      </recordInfo>
+     </relatedItem>
+   #+END_SRC
+
+** <relatedItem type="constituent">
+   This is the element used to encode the titles and bylines of
+   articles and advertisements.
+   - The /ID/ attribute may be any valid XML ID (it must begin with
+     a character).  By convention, the ID will begin with the letter
+     /c/ followed by a two-or three-digit sequential number.
+   - The /<title>/ is transcribed as it appears on the page.
+   - The /<name>/ is transcribed as it appears on the page and is
+     encoded in the /<displayForm>/ element.  All /<name>/ elements
+     shall include a /<role>/ element, which shall designate the
+     generic role, /cre/, in the /<roleTerm>/ subelement.  For
+     example,
+     #+BEGIN_SRC xml
+      <name type="personal">
+       <displayForm>???????</displayForm>
+       <role>
+	<roleTerm type="code">cre</roleTerm>
+       </role>
+      </name>
+     #+END_SRC
+
+   - The <language> element shall contain the subelement
+     /<languageTerm>/, a three-letter code derived from the ISO639-2
+     standard, found at http://www.loc.gov/standards/iso639-2/.  The
+     code form should be used.
+
+   - The <extent> records the page or pages on which the term appears:
+     -  a single page number for an item that appears on only one page
+      - a range (n-m) for an item that appears on sequential pages
+      - a series (n; m) for an item that appears on non-sequential pages
+      - a combination of the above (e.g., /1-2; 5/ for an article
+	that starts on page one, continues on page 2, and then skips
+	to page 5).
