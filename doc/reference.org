@@ -300,6 +300,29 @@
     by docWorks, using configuration rules.
 **** <structMap type="PHYSICAL">
 **** <structMap type="LOGICAL">
+***** The <div> hierarchy
+      - Newspaper
+	- Volume
+	  - Issue
+	    - Title_Section
+	    - Content
+	      - { Article* | Illustration* | SponsoredAd* | Section* }
+
+      - Article
+	- Heading*
+	  - Title?
+	  - Author*
+	- Body
+	  - Body_Content
+
+      - Section
+	- Heading?
+	- Body
+	  - { Article* | Illustration* | SponsoredAd* | Section* }
+
+      - Body_Content
+	- { Paragraph* | Section* }
+
 ** MODS Profile
    #+BEGIN_SRC xml
 <?xml version="1.0" encoding="UTF-8"?>
