@@ -5,7 +5,7 @@
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
-#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   H:6 num:t toc:t \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
 #+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
 #+EXPORT_SELECT_TAGS: export
@@ -29,36 +29,52 @@
     Section N for details of METS use.
   - One ALTO XML file for each page, conforming with ALTO schema
     version 2.0.  See Section N for details.
-  - One JPEG 2000 image file for each page.  (See section N)
+  - One JPEG 2000 image file for each page. (See section N)
   - One PDF file with bookmarks for each issue. (See section N)
 
   Deliverables shall be sent directly to Princeton for ingestion
   into Veridian.
+* JPEG2000 Specification
+   To generate a JP2000 using Kakadu, use the following recipe (taken
+   from /The National Digital Newspaper Program (NDNP) Technical
+   Guidelines for Applicants/):
+
+  #+BEGIN_EXAMPLE
+     kdu_compress -i YOURINPUT.pgm -o YOUROUTPUT.jp2 -rate 
+     1,0.84,0.7,0.6,0.5,0.4,0.35,0.3,0.25,0.21,0.18,0.15,0.125,0.1,0.088,0.0 
+     75,0.0625,0.05,0.04419,0.03716,0.03125,0.025,0.0221,0.01858,0.015625 
+     Clevels=6 Stiles={1024,1024} Corder=RLCP
+  #+END_EXAMPLE
+
 * Identifiers
   Each newspaper issue shall be assigned an /issue identifier/ (an
   /issueid/) corresponding to the date of issuance and taking the
   form /vozrozhdenie_CCYY-MM-DD_II/, where
 
-  - /voz/ is the identifier of the newspaper;
+  - /vozrozhdenie/ is the identifier of the newspaper;
 
   - /CCYY/ is the year of publication (e.g., 1912);
 
   - /MM/ is a two-digit number representing the month of publication,
-    where January = 01, February = 02, etc.  If the FolioLine and/or the
-    Masthead indicates a week of publication (e.g., September 8-14,
-    1946), the first date should be used (e.g., September 8).  If no
-    month of publication is specified, MM is omitted.
+    where January = 01, February = 02, etc.  If no month of
+    publication is specified, MM and DD are omitted.
 
-  - /DD/ is a two-digit number representing the date of publication,
-    (e.g., 01, 02 .. 30, 31).  If no date is specified, DD is
+  - /DD/ is a two-digit number representing the day of publication,
+    (e.g., 01, 02 .. 30, 31).  If no day is specified, DD is
     omitted;
 
   - /II/ is a two-digit number representing the issuance number: a
-    calculated number used for times when more than one issue was
-    published on one day (it will usually be 01);
+    calculated number (it will usually be 01).  If more than one
+    issue (e.g., a supplement) was published on that day, it would
+    have the issuance number /02/.
 
   So, for example, the issue that was published on June 3rd, 1925
   would have the issue identifier /vozrozhdenie_1925-06-03_01/.
+
+  Examples:
+  - 1926_01
+  - 1926-01_01
+  - 1926-01-01_01
 
   These issueids shall be used to compose a Universal Resource Name
   (URN) for each issue:
@@ -68,8 +84,8 @@
   #+END_EXAMPLE
 
   where /urn:PUL:newspaper:/ is a constant and /issueid/ is the
-  issueid of the issue.  For example, the URN for the June 3rd, 1925
-  issue of /Vozrozhdenie/ would have the following URN:
+  issueid of the issue as defined above.  For example, the URN for the
+  June 3rd, 1925 issue of /Vozrozhdenie/ would have the following URN:
 
   #+BEGIN_EXAMPLE
   urn:PUL:newspaper:vozrozhdenie_1925-06-03_01
@@ -84,7 +100,7 @@
    - /issuid/ is the identifier of the issue;
    - /nnn/ is a three-digit number indicating the location of the
      image file in the sequence of image files (not necessarily the
-     number printed o the page that has been photographed);
+     number printed on the page that has been photographed);
    - /jp2/ is the conventional file extension for JPEG2000 files.
 
    For example,
@@ -126,10 +142,8 @@
    #+BEGIN_EXAMPLE
    vozrozhdenie_1925-06-03_01.pdf
    #+END_EXAMPLE
-
-
-
-* METS Profile
+* Profiles
+** METS Profile
    The metadata for each issue shall be encapsulated in a METS
    record.  A skeleton sample of such a record is the following:
 
@@ -209,64 +223,84 @@
 </mets>
    #+END_SRC
 
-   - The top-level <mets> element contains an /OBJID/ attribute whose
-     value is the URN for the issue.
-   - The /TYPE/ attribute has the fixed value /Newspaper/
-   - The <metsHdr> element contains a <metsDocumentID> element whose
-     value is the URN for the METS document itself.
-   - The record contains a single <dmdSec> element with an ID
-     attribute of "dmd1"; this <dmdSec> contains an embedded MODS
-     record for the issue (described below).
+   The root element <mets> contains these attributes:
+   - TYPE :: the fixed value /Newspaper/
+   - OBJID :: the URN for the issue
+   - LABEL :: the /issueid/
+*** <metsHdr>
+    The <metsHdr> element shall contain two elements:
+**** <agent>
+     A constant value for all records:
+     #+BEGIN_SRC xml
+      <agent ROLE="CREATOR" TYPE="ORGANIZATION">
+       <name>Princeton University Library, Digital Initiatives</name>
+      </agent>
+     #+END_SRC
+**** <metsDocumentID TYPE="URN">
+    Contains a string whose contents is composed as follows:
+     #+BEGIN_EXAMPLE
+     PREFIX:ISSUID
+     #+END_EXAMPLE
+     Where /PREFIX/ is the following fixed value:
+     #+BEGIN_EXAMPLE
+     urn:PUL:newspaper:td:
+     #+END_EXAMPLE
+     And /ISSUEID/ is the issue identifier, computed using the rules
+     above.
+*** <dmdSec>
+    The record contains a single <dmdSec> element with an ID
+    attribute of "dmd1"' it contains an embedded MODS record for the
+    issue (described below).
+*** <amdSec>
+    The <amdSec> contains a /<techMD>/ element for each image file (a
+    <mix> record).
+*** <fileSec>
+    The fileSec comprises two /<fileGrp>/ elements: one for the
+    images and one for the ALTO records.
+**** <fileGrp ID="IMGGRP" USE="Images">
+     The /IMGGRP/ file group contains <file> elements that indicate
+     the location of each image file, with attributes linking the
+     file to the corresponding technical metadata and to the
+     corresponding ALTO file.
+***** <file>
+     - /ID/ :: a unique XML id
+     - AMDID :: the ID of the /<techmd>/ element corresponding to the
+                image file
+     - GROUPID :: an ID that links an image file to an ALTO file.
+                  The image file for a page and the ALTO file
+                  containing the OCR output for that page share an id
+                  (conventionally named /pageN/, where N is a
+                  sequence number).
+     - MIMETYPE :: the constant "image/jp2" for jpeg2000 images
+     - CHECKSUM :: the checksum of the file, according to the
+                   algorithm specified in /CHECKSUMTYPE/
+     - CHECKSUMTYPE :: the algorithm used to compute the checksum;
+                       usually SHA-1.
 
-** <metsHdr>
-   The <metsHdr> element shall contain two elements:
 
-*** <agent>
-    A constant value for all records:
-    #+BEGIN_SRC xml
-     <agent ROLE="CREATOR" TYPE="ORGANIZATION">
-      <name>Princeton University Library, Digital Initiatives</name>
-     </agent>
-    #+END_SRC
-*** <metsDocumentID TYPE="URN">
-    Composed as follows:
-    #+BEGIN_EXAMPLE
-    <recordIdentifier>PREFIX:ISSUID</recordIdentifier>
-    #+END_EXAMPLE
-    Where /PREFIX/ is the following fixed value:
-    #+BEGIN_EXAMPLE
-    urn:PUL:newspaper:td:
-    #+END_EXAMPLE
-    And /ISSUEID/ is the issue identifier, computed using the rules
-    above.
-
-
-* ALTO Profile
-  For each page, an encoded representation of the layout and the
-  machine-readable text on the page shall be provided, using the
-  ALTO schema, version 2.0 or higher, with the following
-  specifications, adopted from the NDNP:
-
-  - The text shall be encoded in the natural reading order of the
-    language in which the text is written;
-  - Point size and font data to at least the word level shall be included;
-  - The ALTO file shall include bounding-box coordinates to at least
-    the word level;
-  - Non-rectangular blocks shall not be used.  Some illustrations
-    may format as "tight" in the document.
-
-* JPEG2000 Profile
-   To generate a JP2000 using Kakadu, use the following recipe (taken
-   from /The National Digital Newspaper Program (NDNP) Technical
-   Guidelines for Applicants/):
-
-  #+BEGIN_EXAMPLE
-     kdu_compress -i YOURINPUT.pgm -o YOUROUTPUT.jp2 -rate 
-     1,0.84,0.7,0.6,0.5,0.4,0.35,0.3,0.25,0.21,0.18,0.15,0.125,0.1,0.088,0.0 
-     75,0.0625,0.05,0.04419,0.03716,0.03125,0.025,0.0221,0.01858,0.015625 
-     Clevels=6 Stiles={1024,1024} Corder=RLCP
-  #+END_EXAMPLE
-* MODS Profile
+******* <FLocat>
+      The METS element indicating the actual file location.
+      - LOCTYPE :: the constant /URL/
+      - xlink:href :: the path to the file.  For this project, it will
+                      be a local path.  For example:
+		      #+BEGIN_EXAMPLE
+		      file://./vozrozhdenie_1925-06-03_01_001.jp2
+		      #+END_EXAMPLE
+**** <fileGrp ID="ALTOGRP" USE="OCR">
+     Like the /<fileGrp>/ for images, but corresponding to the ALTO
+     files. (The ALTO files do not have technical metadata, so there
+     is no AMDID attribute.
+*** <structMap>
+    The <structMap> element describes a hierarchical arrangement of
+    the parts (<div>s) making up the digital object described by the
+    METS.  For this project, there are two kinds: a /physical
+    structMap/, which delineates the pages of the newspaper issue in
+    reading order, and a /logical structMap/, which functions as an
+    outline of the newspaper's contents.  Both of these are assembled
+    by docWorks, using configuration rules.
+**** <structMap type="PHYSICAL">
+**** <structMap type="LOGICAL">
+** MODS Profile
    #+BEGIN_SRC xml
 <?xml version="1.0" encoding="UTF-8"?>
 <mods xmlns="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -279,8 +313,8 @@
  <language>
   <languageTerm type="code" authority="iso639-2b">rus</languageTerm>
  </language>
- <titleInfo lang="rus">
-  <title lang="rus" script="??">ВОЗРОЖДЕНIЕ</title>
+ <titleInfo>
+  <title>ВОЗРОЖДЕНIЕ</title>
  </titleInfo>
  <originInfo>
   <dateIssued keyDate="yes" encoding="iso8601">1926-06-03</dateIssued>
@@ -298,7 +332,7 @@
  </relatedItem>
  
  <relatedItem type="constituent" ID="c1">
-  <titleInfo lang="rus" script="??">
+  <titleInfo>
    <title>ПРАВОСЛАВНЫЙ КАЛЕНДАРЬ.</title>
   </titleInfo>
   <language>
@@ -317,99 +351,114 @@
 </mods>
    #+END_SRC
 
-** <recordInfo>
-   The <recordInfo> element contains information about the MODS
-   record itself.  It shall contain a <recordIdentifier> element, as
-   below.
-*** <recordIdentifier>
-    The <recordIdentifier> element is the unique identifier for the
-    MODS record itself (not the identifier for the newspaper issue --
-    that is the <identifier> element described below).  It shall have
-    a value composed as follows:
-    #+BEGIN_EXAMPLE
-    PREFIX:ISSUEID
-    #+END_EXAMPLE
-    Where /PREFIX/ is the fixed value
-    #+BEGIN_EXAMPLE
-    urn:PUL:newspaper:dmd:
-    #+END_EXAMPLE
-    and /ISSUEID/ is the issueid of the issue.  For example,
+*** <mods>
+    The root element of the document.  It has fixed attributes, as
+    illustrated below:
     #+BEGIN_SRC xml
-    <recordIdentifier>urn:PUL:newspaper:dmd:vozrozhdenie_1925-06-03_01</recordIdentifier>     
+    <mods xmlns="http://www.loc.gov/mods/v3"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.loc.gov/mods/v3 
+            http://www.loc.gov/mods/v3/mods-3-4.xsd">
     #+END_SRC
-** <identifier type="PUL">
-   The <identifier> element is used to identify the resource the
-   MODS record describes.  Its value is the resource's /issueid/, as:
-   #+BEGIN_SRC xml
-   <identifier type="PUL">urn:PUL:newspaper:vozrozhdenie_1925-06-03_01</identifier>
-   #+END_SRC
-** <genre>
-   The <genre> element shall always have the fixed value
-   /Newspapers-Issue/.
-** <titleInfo>
-   The <titleInfo> element will always be the following fixed value:
-   #+BEGIN_SRC xml
-   <titleInfo lang="rus">
-    <title lang="rus" script="??">ВОЗРОЖДЕНIЕ</title>
-   </titleInfo>
-   #+END_SRC
-** <originInfo>
-   The <originInfo> element shall contain a single <dateIssued>
-   element that records the date of issuance.
-*** <dateIssued>
-    There will be a single <dateIssued> element in the <originInfo>
-    element, with the /keyDate/ attribute equal to "yes" and the
-    /encoding/ attribute equal to "iso8601".  The value of the
-    element will be the date of issuance, discovered in the
-    masthead, and expressed in the form CCYY-MM-DD, where
-    - /CCYY/ is the year of publication (e.g., 1925)
-    - /MM/ is a two-digit number representing the month of
-      publication, where January = 01, February = 02, etc.  If the
-      FolioLine and/or the Masthead indicates a week of publication
-      (e.g., September 8-14, 1946), the first date should be used
-      (e.g., September 8).  If no month of publication is specified,
-      MM is omitted.
-    - /DD/ is a two-digit number representing the date of
-      publication, (e.g., 01, 02 .. 30, 31).  If no date is
-      specified, DD is omitted.
-
-    So, for example, if the issue was published on June 3rd, 1925,
-    the <dateIssued> element would look like this:
+*** <recordInfo>
+    The <recordInfo> element contains information about the MODS
+    record itself.  It shall contain a /<recordIdentifier>/ element, as
+    below.
+**** <recordIdentifier>
+     The <recordIdentifier> element is the unique identifier for the
+     MODS record itself (not the identifier for the newspaper issue --
+     that is the /<identifier>/ element described below).  It shall have
+     a value composed as follows:
+     #+BEGIN_EXAMPLE
+     PREFIX:ISSUEID
+     #+END_EXAMPLE
+     Where /PREFIX/ is the fixed value
+     #+BEGIN_EXAMPLE
+     urn:PUL:newspaper:dmd:
+     #+END_EXAMPLE
+     and /ISSUEID/ is the issueid of the issue.  For example,
+     #+BEGIN_SRC xml
+     <recordIdentifier>urn:PUL:newspaper:dmd:vozrozhdenie_1925-06-03_01</recordIdentifier>     
+     #+END_SRC
+*** <identifier type="PUL">
+    The <identifier> element is used to identify the resource the MODS
+    record describes (the newspaper issue).  Its value is the
+    resource's /issueid/, as:
     #+BEGIN_SRC xml
-    <dateIssued keyDate="yes" encoding="iso8601">1925-06-03</dateIssued>
+    <identifier type="PUL">urn:PUL:newspaper:vozrozhdenie_1925-06-03_01</identifier>
     #+END_SRC
-** <part type="issue">
-   The <part type="issue"> element encodes the publication sequence
-   of the issue as recorded by the publisher.  /Vozrozhdenie/ prints
-   an issue number in the upper lefthand corner on the first page of
-   each issue.  E.g.,
-   #+BEGIN_SRC xml
-    <part type="issue">
-     <detail type="number">
-       <number>1</number>
-     </detail>
-    </part>
-   #+END_SRC
-** <relatedItem type="host">
-   This element expresses the newspaper this particular issue
-   belongs to (i.e., the newspaper /Vozrozhdenie/).  It has the
-   following fixed value:
-   #+BEGIN_SRC xml
-    <relatedItem type="host" xlink:type="simple" xlink:href="urn:PUL:newspaper:vozrozhdenie">
-      <recordInfo>
-       <recordIdentifier>urn:PUL:newspaper:dmd:vozrozhdenie</recordIdentifier>
-      </recordInfo>
-     </relatedItem>
-   #+END_SRC
 
-** <relatedItem type="constituent">
+*** <language>
+    The <language> element indicates the language of the resource
+    (the newspaper issue).  For this project, it will be the
+    following fixed value:
+    #+BEGIN_SRC xml
+    <language>
+      <languageTerm type="code" authority="iso639-2b">rus</languageTerm>
+     </language>
+    #+END_SRC
+*** <titleInfo>
+    The <titleInfo> element will always be the following fixed value:
+    #+BEGIN_SRC xml
+    <titleInfo>
+     <title>ВОЗРОЖДЕНIЕ</title>
+    </titleInfo>
+    #+END_SRC
+*** <originInfo>
+    The <originInfo> element shall contain a single <dateIssued>
+    element that records the date of issuance.
+**** <dateIssued keyDate="yes" encoding="iso8601">
+     There will be a single <dateIssued> element in the <originInfo>
+     element, with the /keyDate/ attribute equal to "yes" and the
+     /encoding/ attribute equal to "iso8601".  The value of the
+     element will be the date of issuance (described above).
+
+     So, for example, if the issue was published on June 3rd, 1925,
+     the <dateIssued> element would look like this:
+     #+BEGIN_SRC xml
+     <dateIssued keyDate="yes" encoding="iso8601">1925-06-03</dateIssued>
+     #+END_SRC
+*** <part type="issue">
+    The <part type="issue"> element encodes the publication sequence
+    of the issue as recorded by the publisher.  /Vozrozhdenie/ prints
+    an issue number in the upper lefthand corner on the first page of
+    each issue.  E.g.,
+    #+BEGIN_SRC xml
+     <part type="issue">
+      <detail type="number">
+       	<number>303</number>
+        <caption>No. 303</caption>
+      </detail>
+     </part>
+    #+END_SRC
+*** <genre>
+    The <genre> element shall always have the fixed value
+    /Newspapers-Issue/.
+*** <relatedItem type="host">
+    This element expresses the newspaper this particular issue
+    belongs to (i.e., the newspaper /Vozrozhdenie/).  It has the
+    following fixed value:
+    #+BEGIN_SRC xml
+     <relatedItem type="host" xlink:type="simple" xlink:href="urn:PUL:newspaper:vozrozhdenie">
+       <recordInfo>
+       	<recordIdentifier>urn:PUL:newspaper:dmd:vozrozhdenie</recordIdentifier>
+       </recordInfo>
+      </relatedItem>
+    #+END_SRC
+
+*** <relatedItem type="constituent">
    This is the element used to encode descriptions of newspaper
-   content: the titles of article, for example, and the name of the
+   content: the titles of articles, for example, and the name of the
    person who wrote it (or persons, if there are more than one), and
-   on what page or pages it appears. <relatedItem type="constituent">
-   is also used to to indicate the presence of advertisements in the
-   paper (although we do not attempt to capture titles and creators
-   for ads).
+   on what page or pages it appears, among other data. There are four
+   kinds of constituent items in this project:
+   - TextContent
+   - Illustration
+   - SponsoredAd
+   - Section
+
+   They are described in greater detail below.
 
    Here is a hypothetical example, in English:
    #+BEGIN_SRC xml
@@ -445,52 +494,243 @@
      seems to generate the /ID/ attributes.)  This attribute links the
      description to a <div> element in the METS logical structMap.
 
-*** <titleInfo>
-    The <title> is transcribed as it appears on the page.  For this
-    project, we do not distinguish non-sorting initial words (like
-    /a/, /an/, and /the/ in English) from the rest of the title and
-    place the entire title in the <title> element.
-*** <name>
-   - The <name> elements (there may be more than one) are used to
-     record the names of the people or organizations who are
-     responsible for the constituent -- usually, this is simply the
-     author of the piece.
+**** <titleInfo>
+     The <title> is transcribed as it appears on the page.  For this
+     project, we do not distinguish non-sorting initial words (like
+     /a/, /an/, and /the/ in English) from the rest of the title and
+     place the entire title in the <title> element.
+**** <name>
+    - The <name> elements (there may none, or there may be more than
+      one) are used to record the names of the people or organizations
+      who are responsible for the constituent -- usually, this is
+      simply the author of the piece.
 
-     The /<name>/ is transcribed as it appears on the page and is
-     encoded in the /<displayForm>/ element.  All /<name>/ elements
-     shall include a /<role>/ element, which shall designate the
-     generic role, /cre/, in the /<roleTerm>/ subelement.
+      The /<name>/ is transcribed as it appears on the page and is
+      encoded in the /<displayForm>/ element.  All /<name>/ elements
+      shall include a /<role>/ element, which shall designate the
+      generic role, /cre/, in the /<roleTerm>/ subelement.
+**** <language>
+    - The <language> element shall contain the subelement
+      /<languageTerm>/, a three-letter code derived from the ISO639-2
+      standard, found at http://www.loc.gov/standards/iso639-2/.  The
+      code form should be used.  In /Vozrozhdenie/, this will almost
+      always be /rus/.
+**** <part>
+     Contains a single <extent> element.
+***** <extent unit="page">
+     - The <extent> records the page or pages on which the constituent appears:
+       - when the item appears on a single page ::
+	    encode the page number as a solitary /<start>/ element.
+	    #+BEGIN_SRC xml
+	    <extent unit="page">
+             <start>3</start>
+            </extent>
+	    #+END_SRC
 
-   - The <language> element shall contain the subelement
-     /<languageTerm>/, a three-letter code derived from the ISO639-2
-     standard, found at http://www.loc.gov/standards/iso639-2/.  The
-     code form should be used.  In /Vozrozhdenie/, this will almost
-     always be /rus/.
+       - when the item appears on multiple sequential pages :: 
+	    encode the first page in a /<start>/ element and the last
+            page in an /<end>/ element.
+	    #+BEGIN_SRC xml
+	    <extent unit="page">
+             <start>3</start>
+             <end>4</end>
+            </extent>
+	    #+END_SRC
 
-   - The <extent> records the page or pages on which the term appears:
-     - when the item appears on a single page ::
-	  encode the page number as a solitary /<start>/ element.
-     - when the item appears on multiple sequential pages :: 
-	  encode the first page in a /<start>/ element and the last
-          page in an /<end>/ element.
-     - when the item appears on non-sequential pages :: 
-	  encode the pages as a series in a /<list>/ element, as in
-	  #+BEGIN_SRC xml
-	  <extent unit="page">
-           <list>3; 5</list>
-          </extent>
-	  #+END_SRC
+       - when the item appears on non-sequential pages :: 
+	    encode the pages as a series in a /<list>/ element, as in
+	    #+BEGIN_SRC xml
+	    <extent unit="page">
+             <list>3; 5</list>
+            </extent>
+	    #+END_SRC
 
-     - when the item appears on a mi of sequential and non-sequential pages :: 
-          #+BEGIN_SRC xml
-	  <extent unit="page">
-           <list>1-2; 5</list>
-          </extent>
-          #+END_SRC
-       For an article that starts on page 1, continues on page 2, and
-       then skips to page 5.
+       - when the item appears on a mix of sequential and non-sequential pages :: 
+            #+BEGIN_SRC xml
+	    <extent unit="page">
+             <list>1-2; 5</list>
+            </extent>
+            #+END_SRC
 
-*** <genre>
-    The /<genre>/ is determined from the docWorks configuration: for
-    articles and other editorial content, it will be /TextContent/;
-    for advertisements, is will be /sponsoredAd/.
+       	 For an article that starts on page 1, continues on page 2, and
+       	 then skips to page 5.
+
+**** <genre type="CCS">
+     The /<genre type="CCS">/ is determined from the docWorks configuration: for
+     articles and other editorial content, it will be /TextContent/;
+     for photographs, cartoons, and other illustrations, it will be
+     /Illustration/; for advertisements, is will be /SponsoredAd/.
+     Those <relatedItem type="constituent"> elements that contain
+     /other/ constituents will have the genre /Section/.
+**** Kinds of Constituents
+***** TextContent
+      These are the most common sorts of constituents: articles,
+      notices, poems, stories, sports scores -- all textual editorial
+      content.
+
+      A TextContent constituent may contain /other constituents/: in
+      particular, an article may contain illustrations.
+****** Examples
+******* A basic article
+	#+BEGIN_SRC xml
+     <relatedItem type="constituent">
+      <titleInfo>
+       <title>Письма изъ Германiи</title>
+      </titleInfo>
+      <name type="personal">
+       <displayForm>А. Бунге.</displayForm>
+       <role>
+        <roleTerm type="code">cre</roleTerm>
+       </role>
+      </name>
+      <language>
+       <languageTerm type="code" authority="iso639-2b">rus</languageTerm>
+      </language>
+      <part>
+       <extent unit="page">
+        <start>2</start>
+       </extent>
+      </part>
+      <genre type="CCS">TextContent</genre>
+     </relatedItem>
+	#+END_SRC
+
+******* An article with an embedded illustration
+	#+BEGIN_SRC xml
+	    <relatedItem type="constituent">
+      <titleInfo>
+       <title>Театрь и Музыка</title>
+      </titleInfo>
+
+      <language>
+       <languageTerm type="code" authority="iso639-2b">rus</languageTerm>
+      </language>
+      <part>
+       <extent unit="page">
+        <start>4</start>
+       </extent>
+      </part>
+      <genre type="CCS">TextContent</genre>
+      
+      <relatedItem type="constituent">
+       <titleInfo>
+        <title>В. И. Шонтковская</title>
+       </titleInfo>
+       <part>
+        <extent unit="page">
+         <start>4</start>
+        </extent>
+       </part>
+       <genre type="CCS">Illustration</genre>
+      </relatedItem>
+     </relatedItem>
+	#+END_SRC
+
+***** Illustration
+      We use /Illustration/ to refer to all kinds of graphic "art":
+      photographs, cartoons, charts, etc.  Most illustrations in
+      /Vozrozhdenie/ (but not all) are accompanied by some sort of
+      /caption/: a line or two of text, usually beneath the graphic,
+      that describes the illustration, or names the creator of the
+      illustration, or both.
+
+      For docWorks processing, the caption should be used as the
+      <title>. 
+****** Examples
+       #+BEGIN_SRC xml
+    <relatedItem type="constituent" ID="c2">
+      <titleInfo>
+       <title>Митрополитъ Евлопй</title>
+      </titleInfo>
+      <language>
+       <languageTerm type="code" authority="iso639-2b">rus</languageTerm>
+      </language>
+      <part>
+       <extent unit="page">
+        <start>1</start>
+       </extent>
+      </part>
+      <genre type="CCS">Illustration</genre>
+     </relatedItem>
+       #+END_SRC
+
+***** SponsoredAd
+      Advertisements are an important and plentiful constituent of
+      /Vozrozhdenie/.  They usually appear in blocks or sections (see
+      below); we do not attempt to assign them titles or creators.
+****** Examples
+       #+BEGIN_SRC xml
+     <relatedItem type="constituent" ID="c3">
+      <titleInfo>
+       <title>[Advertisement]</title>
+      </titleInfo>
+      <language>
+       <languageTerm type="code" authority="iso639-2b">rus</languageTerm>
+      </language>
+      <part>
+       <extent unit="page">
+       <start>3</start>
+      </extent>
+      </part>
+      <genre type="CCS">SponsoredAd</genre>
+     </relatedItem>
+       #+END_SRC
+
+***** Section
+      A section is a "composite constituent": it contains other
+      constituents.  Advertising blocks are encoded as sections;
+      named sections of the paper are encoded as sections, too.
+****** Examples
+       #+BEGIN_SRC xml
+     <relatedItem type="constituent">
+      <titleInfo>
+       <title>Литература, критика и искусство</title>
+      </titleInfo>
+      <part>
+       <extent unit="page">
+        <start>3</start>
+       </extent>
+      </part>
+      <genre type="CCS">Section</genre>
+
+      <relatedItem type="constituent">
+       <titleInfo>
+        <title>"Машенька"</title>
+       </titleInfo>
+       <part>
+        <extent unit="page">
+         <start>3</start>
+        </extent>
+       </part>
+       <genre type="CCS">TextContent</genre>
+      </relatedItem>
+
+      <relatedItem type="constituent">
+       <titleInfo>
+        <title>"Золотой узоръ"</title>
+       </titleInfo>
+       <part>
+        <extent unit="page">
+         <start>3</start>
+        </extent>
+       </part>
+       <genre type="CCS">TextContent</genre>
+      </relatedItem>
+     </relatedItem>       
+       #+END_SRC
+
+
+** ALTO Profile
+   For each page, an encoded representation of the layout and the
+   machine-readable text on the page shall be provided, using the
+   ALTO schema, version 2.0 or higher, with the following
+   specifications, adopted from the NDNP:
+
+   - The text shall be encoded in the natural reading order of the
+     language in which the text is written;
+   - Point size and font data to at least the word level shall be included;
+   - The ALTO file shall include bounding-box coordinates to at least
+     the word level;
+   - Non-rectangular blocks shall not be used.  Some illustrations
+     may format as "tight" in the document.
+
