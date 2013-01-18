@@ -122,21 +122,401 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1 METS Profile</a>
+<li><a href="#sec-1">1 Some Details</a></li>
+<li><a href="#sec-2">2 Input Files</a></li>
+<li><a href="#sec-3">3 Output Files</a></li>
+<li><a href="#sec-4">4 JPEG2000 Specification</a></li>
+<li><a href="#sec-5">5 Identifiers</a></li>
+<li><a href="#sec-6">6 File Names</a>
 <ul>
-<li><a href="#sec-1-1">1.1 &lt;metsHdr&gt;</a></li>
-<li><a href="#sec-1-2">1.2 &lt;dmdSec&gt;</a></li>
-<li><a href="#sec-1-3">1.3 &lt;amdSec&gt;</a></li>
-<li><a href="#sec-1-4">1.4 &lt;fileSec&gt;</a></li>
+<li><a href="#sec-6-1">6.1 Image Files</a></li>
+<li><a href="#sec-6-2">6.2 ALTO Files</a></li>
+<li><a href="#sec-6-3">6.3 METS Files</a></li>
+<li><a href="#sec-6-4">6.4 PDF Files</a></li>
+</ul>
+</li>
+<li><a href="#sec-7">7 Profiles</a>
+<ul>
+<li><a href="#sec-7-1">7.1 METS Profile</a>
+<ul>
+<li><a href="#sec-7-1-1">7.1.1 &lt;metsHdr&gt;</a>
+<ul>
+<li><a href="#sec-7-1-1-1">7.1.1.1 &lt;agent&gt;</a></li>
+<li><a href="#sec-7-1-1-2">7.1.1.2 &lt;metsDocumentID TYPE="URN"&gt;</a></li>
+</ul>
+</li>
+<li><a href="#sec-7-1-2">7.1.2 &lt;dmdSec&gt;</a></li>
+<li><a href="#sec-7-1-3">7.1.3 &lt;amdSec&gt;</a></li>
+<li><a href="#sec-7-1-4">7.1.4 &lt;fileSec&gt;</a>
+<ul>
+<li><a href="#sec-7-1-4-1">7.1.4.1 &lt;fileGrp ID="IMGGRP" USE="Images"&gt;</a>
+<ul>
+<li><a href="#sec-7-1-4-1-1">7.1.4.1.1 &lt;file&gt;</a></li>
+</ul>
+</li>
+<li><a href="#sec-7-1-4-2">7.1.4.2 &lt;fileGrp ID="ALTOGRP" USE="OCR"&gt;</a></li>
+</ul>
+</li>
+<li><a href="#sec-7-1-5">7.1.5 &lt;structMap&gt;</a>
+<ul>
+<li><a href="#sec-7-1-5-1">7.1.5.1 &lt;structMap type="PHYSICAL"&gt;</a></li>
+<li><a href="#sec-7-1-5-2">7.1.5.2 &lt;structMap type="LOGICAL"&gt;</a>
+<ul>
+<li><a href="#sec-7-1-5-2-1">7.1.5.2.1 The &lt;div&gt; hierarchy</a>
+<ul>
+<li><a href="#sec-7-1-5-2-1-1">7.1.5.2.1.1 &lt;div TYPE="Newspaper"&gt;</a></li>
+<li><a href="#sec-7-1-5-2-1-2">7.1.5.2.1.2 &lt;div TYPE="VOLUME"&gt;</a></li>
+<li><a href="#sec-7-1-5-2-1-3">7.1.5.2.1.3 &lt;div TYPE="ISSUE"&gt;</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</li>
+<li><a href="#sec-7-2">7.2 MODS Profile</a>
+<ul>
+<li><a href="#sec-7-2-1">7.2.1 &lt;mods&gt;</a></li>
+<li><a href="#sec-7-2-2">7.2.2 &lt;recordInfo&gt;</a>
+<ul>
+<li><a href="#sec-7-2-2-1">7.2.2.1 &lt;recordIdentifier&gt;</a></li>
+</ul>
+</li>
+<li><a href="#sec-7-2-3">7.2.3 &lt;identifier type="PUL"&gt;</a></li>
+<li><a href="#sec-7-2-4">7.2.4 &lt;language&gt;</a></li>
+<li><a href="#sec-7-2-5">7.2.5 &lt;titleInfo&gt;</a></li>
+<li><a href="#sec-7-2-6">7.2.6 &lt;originInfo&gt;</a>
+<ul>
+<li><a href="#sec-7-2-6-1">7.2.6.1 &lt;dateIssued keyDate="yes" encoding="iso8601"&gt;</a></li>
+</ul>
+</li>
+<li><a href="#sec-7-2-7">7.2.7 &lt;part type="issue"&gt;</a></li>
+<li><a href="#sec-7-2-8">7.2.8 &lt;genre&gt;</a></li>
+<li><a href="#sec-7-2-9">7.2.9 &lt;relatedItem type="host"&gt;</a></li>
+<li><a href="#sec-7-2-10">7.2.10 &lt;relatedItem type="constituent"&gt;</a>
+<ul>
+<li><a href="#sec-7-2-10-1">7.2.10.1 &lt;titleInfo&gt;</a></li>
+<li><a href="#sec-7-2-10-2">7.2.10.2 &lt;name&gt;</a></li>
+<li><a href="#sec-7-2-10-3">7.2.10.3 &lt;language&gt;</a></li>
+<li><a href="#sec-7-2-10-4">7.2.10.4 &lt;part&gt;</a>
+<ul>
+<li><a href="#sec-7-2-10-4-1">7.2.10.4.1 &lt;extent unit="page"&gt;</a></li>
+</ul>
+</li>
+<li><a href="#sec-7-2-10-5">7.2.10.5 &lt;genre type="CCS"&gt;</a></li>
+<li><a href="#sec-7-2-10-6">7.2.10.6 Kinds of Constituents</a>
+<ul>
+<li><a href="#sec-7-2-10-6-1">7.2.10.6.1 TextContent</a>
+<ul>
+<li><a href="#sec-7-2-10-6-1-1">7.2.10.6.1.1 Examples</a></li>
+</ul>
+</li>
+<li><a href="#sec-7-2-10-6-2">7.2.10.6.2 Illustration</a>
+<ul>
+<li><a href="#sec-7-2-10-6-2-1">7.2.10.6.2.1 Examples</a></li>
+</ul>
+</li>
+<li><a href="#sec-7-2-10-6-3">7.2.10.6.3 SponsoredAd</a>
+<ul>
+<li><a href="#sec-7-2-10-6-3-1">7.2.10.6.3.1 Examples</a></li>
+</ul>
+</li>
+<li><a href="#sec-7-2-10-6-4">7.2.10.6.4 Section</a>
+<ul>
+<li><a href="#sec-7-2-10-6-4-1">7.2.10.6.4.1 Examples</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</li>
+<li><a href="#sec-7-3">7.3 ALTO Profile</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-1" class="outline-3">
-<h3 id="sec-1"><span class="section-number-3">1</span> METS Profile</h3>
-<div class="outline-text-3" id="text-1">
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Some Details</h2>
+<div class="outline-text-2" id="text-1">
+
+<p>  Scope: 28,557 page images
+</p></div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Input Files</h2>
+<div class="outline-text-2" id="text-2">
+
+<p>  Princeton shot the original pages as 24-bit RGB TIFF files at a
+  resolution of 7200 pixels on the long side, then, to improve OCR,
+  created grayscale derivatives with level adjustments: black 10,
+  white 215, gama 1.15.
+</p></div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Output Files</h2>
+<div class="outline-text-2" id="text-3">
+
+<p>  DDD will deliver the following objects for ingestion into Veridian:
+</p>
+<ul>
+<li>One METS XML file for each issue, conforming with METS schema
+    version 1.9 (<a href="http://www.loc.gov/standards/mets/version19/mets.xsd">http://www.loc.gov/standards/mets/version19/mets.xsd</a>).  See
+    Section N for details of METS use.
+</li>
+<li>One ALTO XML file for each page, conforming with ALTO schema
+    version 2.0.  See Section N for details.
+</li>
+<li>One JPEG 2000 image file for each page. (See section N)
+</li>
+<li>One PDF file with bookmarks for each issue. (See section N)
+</li>
+</ul>
+
+
+<p>
+  Deliverables shall be sent directly to Princeton for ingestion
+  into Veridian.
+</p></div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> JPEG2000 Specification</h2>
+<div class="outline-text-2" id="text-4">
+
+<p>   To generate a JP2000 using Kakadu, use the following recipe (taken
+   from <i>The National Digital Newspaper Program (NDNP) Technical    Guidelines for Applicants</i>):
+</p>
+
+
+
+<pre class="example">kdu_compress -i YOURINPUT.pgm -o YOUROUTPUT.jp2 -rate 
+1,0.84,0.7,0.6,0.5,0.4,0.35,0.3,0.25,0.21,0.18,0.15,0.125,0.1,0.088,0.0 
+75,0.0625,0.05,0.04419,0.03716,0.03125,0.025,0.0221,0.01858,0.015625 
+Clevels=6 Stiles={1024,1024} Corder=RLCP
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Identifiers</h2>
+<div class="outline-text-2" id="text-5">
+
+<p>  Each newspaper issue shall be assigned an <i>issue identifier</i> (an
+  <i>issueid</i>) corresponding to the date of issuance and taking the
+  form <i>vozrozhdenie_CCYY-MM-DD_II</i>, where
+</p>
+<ul>
+<li><i>vozrozhdenie</i> is the identifier of the newspaper;
+
+</li>
+<li><i>CCYY</i> is the year of publication (e.g., 1912);
+
+</li>
+<li><i>MM</i> is a two-digit number representing the month of publication,
+    where January = 01, February = 02, etc.  If no month of
+    publication is specified, MM and DD are omitted.
+
+</li>
+<li><i>DD</i> is a two-digit number representing the day of publication,
+    (e.g., 01, 02 .. 30, 31).  If no day is specified, DD is
+    omitted;
+
+</li>
+<li><i>II</i> is a two-digit number representing the issuance number: a
+    calculated number (it will usually be 01).  If more than one
+    issue (e.g., a supplement) was published on that day, it would
+    have the issuance number <i>02</i>.
+</li>
+</ul>
+
+
+<p>
+  So, for example, the issue that was published on June 3rd, 1925
+  would have the issue identifier <i>vozrozhdenie_1925-06-03_01</i>.
+</p>
+<p>
+  Examples:
+</p><ul>
+<li>1926_01
+</li>
+<li>1926-01_01
+</li>
+<li>1926-01-01_01
+</li>
+</ul>
+
+
+<p>
+  These issueids shall be used to compose a Universal Resource Name
+  (URN) for each issue:
+</p>
+
+
+
+<pre class="example">urn:PUL:newspaper:issueid
+</pre>
+
+
+<p>
+  where <i>urn:PUL:newspaper:</i> is a constant and <i>issueid</i> is the
+  issueid of the issue as defined above.  For example, the URN for the
+  June 3rd, 1925 issue of <i>Vozrozhdenie</i> would have the following URN:
+</p>
+
+
+
+<pre class="example">urn:PUL:newspaper:vozrozhdenie_1925-06-03_01
+</pre>
+
+
+<p>
+  The same URN scheme shall be used to create identifiers for the
+  metadata records for each issue (see below).
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> File Names</h2>
+<div class="outline-text-2" id="text-6">
+
+
+</div>
+
+<div id="outline-container-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Image Files</h3>
+<div class="outline-text-3" id="text-6-1">
+
+<p>   Image files shall be named <i>issueid_nnn.jp2</i>, where
+</p><ul>
+<li><i>issuid</i> is the identifier of the issue;
+</li>
+<li><i>nnn</i> is a three-digit number indicating the location of the
+     image file in the sequence of image files (not necessarily the
+     number printed on the page that has been photographed);
+</li>
+<li><i>jp2</i> is the conventional file extension for JPEG2000 files.
+</li>
+</ul>
+
+
+<p>
+   For example,
+</p>
+
+
+<pre class="example">vozrozhdenie_1925-06-03_01_001.jp2
+vozrozhdenie_1925-06-03_01_002.jp2
+...
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> ALTO Files</h3>
+<div class="outline-text-3" id="text-6-2">
+
+<p>   ALTO files shall be named <i>issueid_nnn.alto.xml</i>, where
+</p><ul>
+<li><i>issuid</i> is the identifier of the issue
+</li>
+<li><i>nnn</i> is a three-digit number corresponding to the sequence
+     number of the image file to which this ALTO file corresponds
+</li>
+<li><i>alto</i> indicates the schema used to encode the document
+</li>
+<li><i>xml</i> indicates the format of the file.
+</li>
+</ul>
+
+
+<p>
+   For example,
+</p>
+
+
+<pre class="example">vozrozhdenie_1925-06-03_01_001.alto.xml
+vozrozhdenie_1925-06-03_01_002.alto.xml
+...
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> METS Files</h3>
+<div class="outline-text-3" id="text-6-3">
+
+<p>   METS files shall be named <i>issueid.mets.xml</i>, where
+</p><ul>
+<li><i>issueid</i> is the identifier of the issue
+</li>
+<li><i>mets</i> indicates the schema used to encode the document
+</li>
+<li><i>xml</i> indicates the format of the file.
+</li>
+</ul>
+
+
+<p>   
+   For example,
+</p>
+
+
+<pre class="example">vozrozhdenie_1925-06-03_01.mets.xml
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-6-4" class="outline-3">
+<h3 id="sec-6-4"><span class="section-number-3">6.4</span> PDF Files</h3>
+<div class="outline-text-3" id="text-6-4">
+
+<p>   PDF files shall be named <i>issueid.pdf</i>, where
+</p><ul>
+<li><i>issueid</i> is the identifier of the issue
+</li>
+<li><i>pdf</i> indicates the format of the file.
+</li>
+</ul>
+
+
+<p>   
+   For example,
+</p>
+
+
+<pre class="example">vozrozhdenie_1925-06-03_01.pdf
+</pre>
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Profiles</h2>
+<div class="outline-text-2" id="text-7">
+
+
+</div>
+
+<div id="outline-container-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> METS Profile</h3>
+<div class="outline-text-3" id="text-7-1">
 
 <p>   The metadata for each issue shall be encapsulated in a METS
    record.  A skeleton sample of such a record is the following:
@@ -234,15 +614,20 @@ for the JavaScript code in this tag.
 
 </div>
 
-<div id="outline-container-1-1" class="outline-4">
-<h4 id="sec-1-1"><span class="section-number-4">1.1</span> &lt;metsHdr&gt;</h4>
-<div class="outline-text-4" id="text-1-1">
+<div id="outline-container-7-1-1" class="outline-4">
+<h4 id="sec-7-1-1"><span class="section-number-4">7.1.1</span> &lt;metsHdr&gt;</h4>
+<div class="outline-text-4" id="text-7-1-1">
 
 <p>    The &lt;metsHdr&gt; element shall contain two elements:
-</p><ul>
-<li id="sec-1-1-1">&lt;agent&gt;<br/>
-     A constant value for all records:
+</p>
+</div>
 
+<div id="outline-container-7-1-1-1" class="outline-5">
+<h5 id="sec-7-1-1-1"><span class="section-number-5">7.1.1.1</span> &lt;agent&gt;</h5>
+<div class="outline-text-5" id="text-7-1-1-1">
+
+<p>     A constant value for all records:
+</p>
 
 
 <pre class="src src-xml">&lt;<span style="color: #a40000;">agent</span> <span style="color: #b35000;">ROLE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">CREATOR</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">TYPE</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">ORGANIZATION</span><span style="color: #5c3566;">"</span>&gt;
@@ -250,12 +635,16 @@ for the JavaScript code in this tag.
 &lt;/<span style="color: #a40000;">agent</span>&gt;
 </pre>
 
-</li>
-</ul>
-<ul>
-<li id="sec-1-1-2">&lt;metsDocumentID TYPE="URN"&gt;<br/>
-    Contains a string whose contents is composed as follows:
+</div>
 
+</div>
+
+<div id="outline-container-7-1-1-2" class="outline-5">
+<h5 id="sec-7-1-1-2"><span class="section-number-5">7.1.1.2</span> &lt;metsDocumentID TYPE="URN"&gt;</h5>
+<div class="outline-text-5" id="text-7-1-1-2">
+
+<p>    Contains a string whose contents is composed as follows:
+</p>
 
 
 <pre class="example">PREFIX:ISSUID
@@ -272,15 +661,14 @@ for the JavaScript code in this tag.
 <p>
      And <i>ISSUEID</i> is the issue identifier, computed using the rules
      above.
-</p></li>
-</ul>
+</p></div>
 </div>
 
 </div>
 
-<div id="outline-container-1-2" class="outline-4">
-<h4 id="sec-1-2"><span class="section-number-4">1.2</span> &lt;dmdSec&gt;</h4>
-<div class="outline-text-4" id="text-1-2">
+<div id="outline-container-7-1-2" class="outline-4">
+<h4 id="sec-7-1-2"><span class="section-number-4">7.1.2</span> &lt;dmdSec&gt;</h4>
+<div class="outline-text-4" id="text-7-1-2">
 
 <p>    The record contains a single &lt;dmdSec&gt; element with an ID
     attribute of "dmd1"' it contains an embedded MODS record for the
@@ -289,9 +677,9 @@ for the JavaScript code in this tag.
 
 </div>
 
-<div id="outline-container-1-3" class="outline-4">
-<h4 id="sec-1-3"><span class="section-number-4">1.3</span> &lt;amdSec&gt;</h4>
-<div class="outline-text-4" id="text-1-3">
+<div id="outline-container-7-1-3" class="outline-4">
+<h4 id="sec-7-1-3"><span class="section-number-4">7.1.3</span> &lt;amdSec&gt;</h4>
+<div class="outline-text-4" id="text-7-1-3">
 
 <p>    The &lt;amdSec&gt; contains a <i>&lt;techMD&gt;</i> element for each image file (a
     &lt;mix&gt; record).
@@ -299,20 +687,30 @@ for the JavaScript code in this tag.
 
 </div>
 
-<div id="outline-container-1-4" class="outline-4">
-<h4 id="sec-1-4"><span class="section-number-4">1.4</span> &lt;fileSec&gt;</h4>
-<div class="outline-text-4" id="text-1-4">
+<div id="outline-container-7-1-4" class="outline-4">
+<h4 id="sec-7-1-4"><span class="section-number-4">7.1.4</span> &lt;fileSec&gt;</h4>
+<div class="outline-text-4" id="text-7-1-4">
 
 <p>    The fileSec comprises two <i>&lt;fileGrp&gt;</i> elements: one for the
     images and one for the ALTO records.
-</p><ul>
-<li id="sec-1-4-1">&lt;fileGrp ID="IMGGRP" USE="Images"&gt;<br/>
-     The <i>IMGGRP</i> file group contains &lt;file&gt; elements that indicate
+</p>
+</div>
+
+<div id="outline-container-7-1-4-1" class="outline-5">
+<h5 id="sec-7-1-4-1"><span class="section-number-5">7.1.4.1</span> &lt;fileGrp ID="IMGGRP" USE="Images"&gt;</h5>
+<div class="outline-text-5" id="text-7-1-4-1">
+
+<p>     The <i>IMGGRP</i> file group contains &lt;file&gt; elements that indicate
      the location of each image file, with attributes linking the
      file to the corresponding technical metadata and to the
      corresponding ALTO file.
-<ul>
-<li id="sec-1-4-1-1">&lt;file&gt;<br/>
+</p>
+</div>
+
+<div id="outline-container-7-1-4-1-1" class="outline-6">
+<h6 id="sec-7-1-4-1-1"><span class="section-number-6">7.1.4.1.1</span> &lt;file&gt;</h6>
+<div class="outline-text-6" id="text-7-1-4-1-1">
+
 <dl>
 <dt><i>ID</i></dt><dd>a unique XML id
 </dd>
@@ -338,12 +736,12 @@ for the JavaScript code in this tag.
 
 
 <ul>
-<li id="sec-1-4-1-1-1">&lt;FLocat&gt;<br/>
+<li id="sec-7-1-4-1-1-1">&lt;FLocat&gt;<br/>
       The METS element indicating the actual file location.
 <dl>
 <dt>LOCTYPE</dt><dd>the constant <i>URL</i>
 </dd>
-<dt>xlink:href</dt><dd>the URL of the file.  For this project, it will
+<dt>xlink:href</dt><dd>the path to the file.  For this project, it will
                       be a local path.  For example:
 
 
@@ -356,15 +754,983 @@ for the JavaScript code in this tag.
 
 </li>
 </ul>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-7-1-4-2" class="outline-5">
+<h5 id="sec-7-1-4-2"><span class="section-number-5">7.1.4.2</span> &lt;fileGrp ID="ALTOGRP" USE="OCR"&gt;</h5>
+<div class="outline-text-5" id="text-7-1-4-2">
+
+<p>     Like the <i>&lt;fileGrp&gt;</i> for images, but corresponding to the ALTO
+     files. (The ALTO files do not have technical metadata, so there
+     is no AMDID attribute.
+</p></div>
+</div>
+
+</div>
+
+<div id="outline-container-7-1-5" class="outline-4">
+<h4 id="sec-7-1-5"><span class="section-number-4">7.1.5</span> &lt;structMap&gt;</h4>
+<div class="outline-text-4" id="text-7-1-5">
+
+<p>    The &lt;structMap&gt; element describes a hierarchical arrangement of
+    the parts (&lt;div&gt;s) making up the digital object described by the
+    METS.  For this project, there are two kinds: a <i>physical     structMap</i>, which delineates the pages of the newspaper issue in
+    reading order, and a <i>logical structMap</i>, which functions as an
+    outline of the newspaper's contents.  Both of these are assembled
+    by docWorks, using configuration rules.
+</p>
+</div>
+
+<div id="outline-container-7-1-5-1" class="outline-5">
+<h5 id="sec-7-1-5-1"><span class="section-number-5">7.1.5.1</span> &lt;structMap type="PHYSICAL"&gt;</h5>
+<div class="outline-text-5" id="text-7-1-5-1">
+
+</div>
+
+</div>
+
+<div id="outline-container-7-1-5-2" class="outline-5">
+<h5 id="sec-7-1-5-2"><span class="section-number-5">7.1.5.2</span> &lt;structMap type="LOGICAL"&gt;</h5>
+<div class="outline-text-5" id="text-7-1-5-2">
+
+
+</div>
+
+<div id="outline-container-7-1-5-2-1" class="outline-6">
+<h6 id="sec-7-1-5-2-1"><span class="section-number-6">7.1.5.2.1</span> The &lt;div&gt; hierarchy</h6>
+<div class="outline-text-6" id="text-7-1-5-2-1">
+
+<p>      The outlines below show the hierarchical relationship among the
+      &lt;div&gt; elements in the logical structMap.  Each div is described
+      more fully below.
+</p>
+<ul>
+<li>Newspaper
+<ul>
+<li>Volume+
+<ul>
+<li>Issue+
+<ul>
+<li>Contents
+<ul>
+<li>{ Article* | Illustration* | Section* }
 </li>
 </ul>
+
+</li>
+<li>Adevertisements
+<ul>
+<li>{ SponsoredAd+ | Section* }
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>Article
+<ul>
+<li>Heading*
+<ul>
+<li>Title?
+</li>
+<li>Author*
+</li>
+</ul>
+
+</li>
+<li>Body
+<ul>
+<li>{ Paragraph* | Section* }
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>Illustration
+<ul>
+<li>Graphic+
+</li>
+<li>Caption?
+<ul>
+<li>Paragraph+
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>SponsoredAd
+<ul>
+<li>{ Graphic* | Paragraph* }
+
+</li>
+</ul>
+
+</li>
+<li>Section
+<ul>
+<li>Heading?
+</li>
+<li>Body
+<ul>
+<li>{ Article* | Illustration* | SponsoredAd* | Section* }
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-7-1-5-2-1-1" class="outline-7">
+<h7 id="sec-7-1-5-2-1-1"><span class="section-number-7">7.1.5.2.1.1</span> &lt;div TYPE="Newspaper"&gt;</h7>
+<div class="outline-text-7" id="text-7-1-5-2-1-1">
+
+<p>       The root &lt;div&gt; of the logical structMap is &lt;div
+       TYPE="Newspaper"&gt;.  It must contain one or more &lt;div
+       TYPE="Volume"&gt; elements (in practice it will contain only
+       one).
+</p>
+<p>       
+       Attributes:
+</p><dl>
+<dt>TYPE</dt><dd>must be "Newspaper"
+
+</dd>
+<dt>LABEL</dt><dd>The name of the paper (ВОЗРОЖДЕНIЕ), the issue
+                  number, and the date of publication
+</dd>
+</dl>
+
+</div>
+
+</div>
+
+<div id="outline-container-7-1-5-2-1-2" class="outline-7">
+<h7 id="sec-7-1-5-2-1-2"><span class="section-number-7">7.1.5.2.1.2</span> &lt;div TYPE="VOLUME"&gt;</h7>
+<div class="outline-text-7" id="text-7-1-5-2-1-2">
+
+<p>       A &lt;div&gt; representing a (possibly) bound volume of issues.  In
+       this project, we are representing each issue of the newspaper
+       as a separate digital object, so the &lt;div TYPE="VOLUME"&gt;
+       element will in practice contain only one &lt;div TYPE="ISSUE"&gt;.
+</p>
+<p>
+       Attributes:
+</p><dl>
+<dt>TYPE</dt><dd>must be "VOLUME"
+</dd>
+<dt>LABEL</dt><dd>(To be determined)
+</dd>
+</dl>
+
+</div>
+
+</div>
+
+<div id="outline-container-7-1-5-2-1-3" class="outline-7">
+<h7 id="sec-7-1-5-2-1-3"><span class="section-number-7">7.1.5.2.1.3</span> &lt;div TYPE="ISSUE"&gt;</h7>
+<div class="outline-text-7" id="text-7-1-5-2-1-3">
+
+<p>       A &lt;div&gt; representing the actual issue.  It contains the
+       "contents" of the paper: the editorial content and the
+       advertisements.
+</p>
+<p>
+       Attributes:
+</p><dl>
+<dt>TYPE</dt><dd>must be "ISSUE"
+</dd>
+<dt>LABEL</dt><dd>The issue number and the date of publication
+</dd>
+<dt>DMDID</dt><dd>the ID of the &lt;dmdSec&gt; for the object (in practice,
+                  always "dmd1")
+</dd>
+</dl>
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-7-2" class="outline-3">
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> MODS Profile</h3>
+<div class="outline-text-3" id="text-7-2">
+
+
+
+
+<pre class="src src-xml">&lt;?<span style="color: #346604;">xml</span> <span style="color: #b35000;">version</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">1.0</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">encoding</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">UTF-8</span><span style="color: #5c3566;">"</span>?&gt;
+&lt;<span style="color: #a40000;">mods</span> <span style="color: #75507b;">xmlns</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">http://www.loc.gov/mods/v3</span><span style="color: #5c3566;">"</span> <span style="color: #75507b;">xmlns</span>:<span style="color: #b35000;">xlink</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">http://www.w3.org/1999/xlink</span><span style="color: #5c3566;">"</span>
+ <span style="color: #75507b;">xmlns</span>:<span style="color: #b35000;">xsi</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">http://www.w3.org/2001/XMLSchema-instance</span><span style="color: #5c3566;">"</span>
+ <span style="color: #75507b;">xsi</span>:<span style="color: #b35000;">schemaLocation</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">http://www.loc.gov/mods/v3 http://www.loc.gov/mods/v3/mods-3-4.xsd</span><span style="color: #5c3566;">"</span>&gt;
+ &lt;<span style="color: #a40000;">recordInfo</span>&gt;
+  &lt;<span style="color: #a40000;">recordIdentifier</span>&gt;urn:PUL:newspaper:dmd:vozrozhdenie_1925-06-03_01&lt;/<span style="color: #a40000;">recordIdentifier</span>&gt;
+ &lt;/<span style="color: #a40000;">recordInfo</span>&gt;
+ &lt;<span style="color: #a40000;">identifier</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">PUL</span><span style="color: #5c3566;">"</span>&gt;urn:PUL:newspaper:vozrozhdenie_1925-06-03_01&lt;/<span style="color: #a40000;">identifier</span>&gt;
+ &lt;<span style="color: #a40000;">language</span>&gt;
+  &lt;<span style="color: #a40000;">languageTerm</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">code</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">authority</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">iso639-2b</span><span style="color: #5c3566;">"</span>&gt;rus&lt;/<span style="color: #a40000;">languageTerm</span>&gt;
+ &lt;/<span style="color: #a40000;">language</span>&gt;
+ &lt;<span style="color: #a40000;">titleInfo</span>&gt;
+  &lt;<span style="color: #a40000;">title</span>&gt;&#1042;&#1054;&#1047;&#1056;&#1054;&#1046;&#1044;&#1045;&#1053;I&#1045;&lt;/<span style="color: #a40000;">title</span>&gt;
+ &lt;/<span style="color: #a40000;">titleInfo</span>&gt;
+ &lt;<span style="color: #a40000;">originInfo</span>&gt;
+  &lt;<span style="color: #a40000;">dateIssued</span> <span style="color: #b35000;">keyDate</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">yes</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">encoding</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">iso8601</span><span style="color: #5c3566;">"</span>&gt;1926-06-03&lt;/<span style="color: #a40000;">dateIssued</span>&gt;
+ &lt;/<span style="color: #a40000;">originInfo</span>&gt;
+ &lt;<span style="color: #a40000;">part</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">issue</span><span style="color: #5c3566;">"</span>&gt;
+  &lt;<span style="color: #a40000;">detail</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">number</span><span style="color: #5c3566;">"</span>&gt;
+   &lt;<span style="color: #a40000;">number</span>&gt;1&lt;/<span style="color: #a40000;">number</span>&gt;
+  &lt;/<span style="color: #a40000;">detail</span>&gt;
+ &lt;/<span style="color: #a40000;">part</span>&gt;
+
+ &lt;<span style="color: #a40000;">relatedItem</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">host</span><span style="color: #5c3566;">"</span> <span style="color: #75507b;">xlink</span>:<span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">simple</span><span style="color: #5c3566;">"</span> <span style="color: #75507b;">xlink</span>:<span style="color: #b35000;">href</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">urn:PUL:newspaper:vozrozhdenie</span><span style="color: #5c3566;">"</span>&gt;
+  &lt;<span style="color: #a40000;">recordInfo</span>&gt;
+   &lt;<span style="color: #a40000;">recordIdentifier</span>&gt;urn:PUL:newspaper:dmd:vozrozhdenie&lt;/<span style="color: #a40000;">recordIdentifier</span>&gt;
+  &lt;/<span style="color: #a40000;">recordInfo</span>&gt;
+ &lt;/<span style="color: #a40000;">relatedItem</span>&gt;
+
+ &lt;<span style="color: #a40000;">relatedItem</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">constituent</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">ID</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">c1</span><span style="color: #5c3566;">"</span>&gt;
+  &lt;<span style="color: #a40000;">titleInfo</span>&gt;
+   &lt;<span style="color: #a40000;">title</span>&gt;&#1055;&#1056;&#1040;&#1042;&#1054;&#1057;&#1051;&#1040;&#1042;&#1053;&#1067;&#1049; &#1050;&#1040;&#1051;&#1045;&#1053;&#1044;&#1040;&#1056;&#1068;.&lt;/<span style="color: #a40000;">title</span>&gt;
+  &lt;/<span style="color: #a40000;">titleInfo</span>&gt;
+  &lt;<span style="color: #a40000;">language</span>&gt;
+   &lt;<span style="color: #a40000;">languageTerm</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">code</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">authority</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">iso639-2b</span><span style="color: #5c3566;">"</span>&gt;rus&lt;/<span style="color: #a40000;">languageTerm</span>&gt;
+  &lt;/<span style="color: #a40000;">language</span>&gt;
+  &lt;<span style="color: #a40000;">part</span>&gt;
+   &lt;<span style="color: #a40000;">extent</span> <span style="color: #b35000;">unit</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">page</span><span style="color: #5c3566;">"</span>&gt;
+    &lt;<span style="color: #a40000;">start</span>&gt;1&lt;/<span style="color: #a40000;">start</span>&gt;
+   &lt;/<span style="color: #a40000;">extent</span>&gt;
+  &lt;/<span style="color: #a40000;">part</span>&gt;
+  &lt;<span style="color: #a40000;">genre</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">CCS</span><span style="color: #5c3566;">"</span>&gt;TextContent&lt;/<span style="color: #a40000;">genre</span>&gt;
+ &lt;/<span style="color: #a40000;">relatedItem</span>&gt;
+
+ <span style="color: #5f615c; font-style: italic;">&lt;!--</span><span style="color: #5f615c; font-style: italic;"> The rest of the articles and advertisements follow, as &lt;relatedItem type="constituent"&gt; elements. </span><span style="color: #5f615c; font-style: italic;">--&gt;</span>
+
+&lt;/<span style="color: #a40000;">mods</span>&gt;
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-7-2-1" class="outline-4">
+<h4 id="sec-7-2-1"><span class="section-number-4">7.2.1</span> &lt;mods&gt;</h4>
+<div class="outline-text-4" id="text-7-2-1">
+
+<p>    The root element of the document.  It has fixed attributes, as
+    illustrated below:
+</p>
+
+
+<pre class="src src-xml">&lt;<span style="color: #a40000;">mods</span> <span style="color: #75507b;">xmlns</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">http://www.loc.gov/mods/v3</span><span style="color: #5c3566;">"</span>
+      <span style="color: #75507b;">xmlns</span>:<span style="color: #b35000;">xlink</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">http://www.w3.org/1999/xlink</span><span style="color: #5c3566;">"</span>
+      <span style="color: #75507b;">xmlns</span>:<span style="color: #b35000;">xsi</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">http://www.w3.org/2001/XMLSchema-instance</span><span style="color: #5c3566;">"</span>
+      <span style="color: #75507b;">xsi</span>:<span style="color: #b35000;">schemaLocation</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">http://www.loc.gov/mods/v3 </span>
+<span style="color: #5c3566;">        http://www.loc.gov/mods/v3/mods-3-4.xsd</span><span style="color: #5c3566;">"</span>&gt;
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-7-2-2" class="outline-4">
+<h4 id="sec-7-2-2"><span class="section-number-4">7.2.2</span> &lt;recordInfo&gt;</h4>
+<div class="outline-text-4" id="text-7-2-2">
+
+<p>    The &lt;recordInfo&gt; element contains information about the MODS
+    record itself.  It shall contain a <i>&lt;recordIdentifier&gt;</i> element, as
+    below.
+</p>
+</div>
+
+<div id="outline-container-7-2-2-1" class="outline-5">
+<h5 id="sec-7-2-2-1"><span class="section-number-5">7.2.2.1</span> &lt;recordIdentifier&gt;</h5>
+<div class="outline-text-5" id="text-7-2-2-1">
+
+<p>     The &lt;recordIdentifier&gt; element is the unique identifier for the
+     MODS record itself (not the identifier for the newspaper issue --
+     that is the <i>&lt;identifier&gt;</i> element described below).  It shall have
+     a value composed as follows:
+</p>
+
+
+<pre class="example">PREFIX:ISSUEID
+</pre>
+
+<p>
+     Where <i>PREFIX</i> is the fixed value
+</p>
+
+
+<pre class="example">urn:PUL:newspaper:dmd:
+</pre>
+
+<p>
+     and <i>ISSUEID</i> is the issueid of the issue.  For example,
+</p>
+
+
+<pre class="src src-xml">&lt;<span style="color: #a40000;">recordIdentifier</span>&gt;urn:PUL:newspaper:dmd:vozrozhdenie_1925-06-03_01&lt;/<span style="color: #a40000;">recordIdentifier</span>&gt;     
+</pre>
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-7-2-3" class="outline-4">
+<h4 id="sec-7-2-3"><span class="section-number-4">7.2.3</span> &lt;identifier type="PUL"&gt;</h4>
+<div class="outline-text-4" id="text-7-2-3">
+
+<p>    The &lt;identifier&gt; element is used to identify the resource the MODS
+    record describes (the newspaper issue).  Its value is the
+    resource's <i>issueid</i>, as:
+</p>
+
+
+<pre class="src src-xml">&lt;<span style="color: #a40000;">identifier</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">PUL</span><span style="color: #5c3566;">"</span>&gt;urn:PUL:newspaper:vozrozhdenie_1925-06-03_01&lt;/<span style="color: #a40000;">identifier</span>&gt;
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-7-2-4" class="outline-4">
+<h4 id="sec-7-2-4"><span class="section-number-4">7.2.4</span> &lt;language&gt;</h4>
+<div class="outline-text-4" id="text-7-2-4">
+
+<p>    The &lt;language&gt; element indicates the language of the resource
+    (the newspaper issue).  For this project, it will be the
+    following fixed value:
+</p>
+
+
+<pre class="src src-xml">&lt;<span style="color: #a40000;">language</span>&gt;
+  &lt;<span style="color: #a40000;">languageTerm</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">code</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">authority</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">iso639-2b</span><span style="color: #5c3566;">"</span>&gt;rus&lt;/<span style="color: #a40000;">languageTerm</span>&gt;
+ &lt;/<span style="color: #a40000;">language</span>&gt;
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-7-2-5" class="outline-4">
+<h4 id="sec-7-2-5"><span class="section-number-4">7.2.5</span> &lt;titleInfo&gt;</h4>
+<div class="outline-text-4" id="text-7-2-5">
+
+<p>    The &lt;titleInfo&gt; element will always be the following fixed value:
+</p>
+
+
+<pre class="src src-xml">&lt;<span style="color: #a40000;">titleInfo</span>&gt;
+ &lt;<span style="color: #a40000;">title</span>&gt;&#1042;&#1054;&#1047;&#1056;&#1054;&#1046;&#1044;&#1045;&#1053;I&#1045;&lt;/<span style="color: #a40000;">title</span>&gt;
+&lt;/<span style="color: #a40000;">titleInfo</span>&gt;
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-7-2-6" class="outline-4">
+<h4 id="sec-7-2-6"><span class="section-number-4">7.2.6</span> &lt;originInfo&gt;</h4>
+<div class="outline-text-4" id="text-7-2-6">
+
+<p>    The &lt;originInfo&gt; element shall contain a single &lt;dateIssued&gt;
+    element that records the date of issuance.
+</p>
+</div>
+
+<div id="outline-container-7-2-6-1" class="outline-5">
+<h5 id="sec-7-2-6-1"><span class="section-number-5">7.2.6.1</span> &lt;dateIssued keyDate="yes" encoding="iso8601"&gt;</h5>
+<div class="outline-text-5" id="text-7-2-6-1">
+
+<p>     There will be a single &lt;dateIssued&gt; element in the &lt;originInfo&gt;
+     element, with the <i>keyDate</i> attribute equal to "yes" and the
+     <i>encoding</i> attribute equal to "iso8601".  The value of the
+     element will be the date of issuance (described above).
+</p>
+<p>
+     So, for example, if the issue was published on June 3rd, 1925,
+     the &lt;dateIssued&gt; element would look like this:
+</p>
+
+
+<pre class="src src-xml">&lt;<span style="color: #a40000;">dateIssued</span> <span style="color: #b35000;">keyDate</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">yes</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">encoding</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">iso8601</span><span style="color: #5c3566;">"</span>&gt;1925-06-03&lt;/<span style="color: #a40000;">dateIssued</span>&gt;
+</pre>
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-7-2-7" class="outline-4">
+<h4 id="sec-7-2-7"><span class="section-number-4">7.2.7</span> &lt;part type="issue"&gt;</h4>
+<div class="outline-text-4" id="text-7-2-7">
+
+<p>    The &lt;part type="issue"&gt; element encodes the publication sequence
+    of the issue as recorded by the publisher.  <i>Vozrozhdenie</i> prints
+    an issue number in the upper lefthand corner on the first page of
+    each issue.  E.g.,
+</p>
+
+
+<pre class="src src-xml">&lt;<span style="color: #a40000;">part</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">issue</span><span style="color: #5c3566;">"</span>&gt;
+ &lt;<span style="color: #a40000;">detail</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">number</span><span style="color: #5c3566;">"</span>&gt;
+   &lt;<span style="color: #a40000;">number</span>&gt;303&lt;/<span style="color: #a40000;">number</span>&gt;
+   &lt;<span style="color: #a40000;">caption</span>&gt;No. 303&lt;/<span style="color: #a40000;">caption</span>&gt;
+ &lt;/<span style="color: #a40000;">detail</span>&gt;
+&lt;/<span style="color: #a40000;">part</span>&gt;
+</pre>
+
+</div>
+
+</div>
+
+<div id="outline-container-7-2-8" class="outline-4">
+<h4 id="sec-7-2-8"><span class="section-number-4">7.2.8</span> &lt;genre&gt;</h4>
+<div class="outline-text-4" id="text-7-2-8">
+
+<p>    The &lt;genre&gt; element shall always have the fixed value
+    <i>Newspapers-Issue</i>.
+</p></div>
+
+</div>
+
+<div id="outline-container-7-2-9" class="outline-4">
+<h4 id="sec-7-2-9"><span class="section-number-4">7.2.9</span> &lt;relatedItem type="host"&gt;</h4>
+<div class="outline-text-4" id="text-7-2-9">
+
+<p>    This element expresses the newspaper this particular issue
+    belongs to (i.e., the newspaper <i>Vozrozhdenie</i>).  It has the
+    following fixed value:
+</p>
+
+
+<pre class="src src-xml">&lt;<span style="color: #a40000;">relatedItem</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">host</span><span style="color: #5c3566;">"</span> <span style="color: #75507b;">xlink</span>:<span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">simple</span><span style="color: #5c3566;">"</span> <span style="color: #75507b;">xlink</span>:<span style="color: #b35000;">href</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">urn:PUL:newspaper:vozrozhdenie</span><span style="color: #5c3566;">"</span>&gt;
+  &lt;<span style="color: #a40000;">recordInfo</span>&gt;
+   &lt;<span style="color: #a40000;">recordIdentifier</span>&gt;urn:PUL:newspaper:dmd:vozrozhdenie&lt;/<span style="color: #a40000;">recordIdentifier</span>&gt;
+  &lt;/<span style="color: #a40000;">recordInfo</span>&gt;
+ &lt;/<span style="color: #a40000;">relatedItem</span>&gt;
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-7-2-10" class="outline-4">
+<h4 id="sec-7-2-10"><span class="section-number-4">7.2.10</span> &lt;relatedItem type="constituent"&gt;</h4>
+<div class="outline-text-4" id="text-7-2-10">
+
+<p>   This is the element used to encode descriptions of newspaper
+   content: the titles of articles, for example, and the name of the
+   person who wrote it (or persons, if there are more than one), and
+   on what page or pages it appears, among other data. There are four
+   kinds of constituent items in this project:
+</p><ul>
+<li>TextContent
+</li>
+<li>Illustration
+</li>
+<li>SponsoredAd
+</li>
+<li>Section
+</li>
+</ul>
+
+
+<p>
+   They are described in greater detail below.
+</p>
+<p>
+   Here is a hypothetical example, in English:
+</p>
+
+
+<pre class="src src-xml">&lt;<span style="color: #a40000;">relatedItem</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">constituent</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">ID</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">c17</span><span style="color: #5c3566;">"</span>&gt;
+  &lt;<span style="color: #a40000;">titleInfo</span>&gt;
+   &lt;<span style="color: #a40000;">title</span>&gt;A Modest Proposal&lt;/<span style="color: #a40000;">title</span>&gt;
+  &lt;/<span style="color: #a40000;">titleInfo</span>&gt;
+  &lt;<span style="color: #a40000;">name</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">personal</span><span style="color: #5c3566;">"</span>&gt;
+   &lt;<span style="color: #a40000;">displayForm</span>&gt;Jonathan Swift&lt;/<span style="color: #a40000;">displayForm</span>&gt;
+   &lt;<span style="color: #a40000;">role</span>&gt;
+    &lt;<span style="color: #a40000;">roleTerm</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">code</span><span style="color: #5c3566;">"</span>&gt;cre&lt;/<span style="color: #a40000;">roleTerm</span>&gt;
+   &lt;/<span style="color: #a40000;">role</span>&gt;
+  &lt;/<span style="color: #a40000;">name</span>&gt;
+  &lt;<span style="color: #a40000;">language</span>&gt;
+   &lt;<span style="color: #a40000;">languageTerm</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">code</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">authority</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">iso639-2b</span><span style="color: #5c3566;">"</span>&gt;eng&lt;/<span style="color: #a40000;">languageTerm</span>&gt;
+  &lt;/<span style="color: #a40000;">language</span>&gt;
+  &lt;<span style="color: #a40000;">part</span>&gt;
+   &lt;<span style="color: #a40000;">extent</span> <span style="color: #b35000;">unit</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">page</span><span style="color: #5c3566;">"</span>&gt;
+    &lt;<span style="color: #a40000;">start</span>&gt;25&lt;/<span style="color: #a40000;">start</span>&gt;
+    &lt;<span style="color: #a40000;">end</span>&gt;29&lt;/<span style="color: #a40000;">end</span>&gt;
+   &lt;/<span style="color: #a40000;">extent</span>&gt;
+  &lt;/<span style="color: #a40000;">part</span>&gt;
+  &lt;<span style="color: #a40000;">genre</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">CCS</span><span style="color: #5c3566;">"</span>&gt;TextContent&lt;/<span style="color: #a40000;">genre</span>&gt;
+ &lt;/<span style="color: #a40000;">relatedItem</span>&gt;
+</pre>
+
+
+<ul>
+<li>The <i>type</i> attribute has the value <i>constituent</i>, because this
+     related item is a constituent (a part) of the newspaper.
+
+</li>
+<li>The <i>ID</i> attribute may be any valid XML ID (it must begin with a
+     character).  By convention, the ID will begin with the letter <i>c</i>
+     followed by a sequential number.  (The docWorks processing flow
+     seems to generate the <i>ID</i> attributes.)  This attribute links the
+     description to a &lt;div&gt; element in the METS logical structMap.
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-7-2-10-1" class="outline-5">
+<h5 id="sec-7-2-10-1"><span class="section-number-5">7.2.10.1</span> &lt;titleInfo&gt;</h5>
+<div class="outline-text-5" id="text-7-2-10-1">
+
+<p>     The &lt;title&gt; is transcribed as it appears on the page.  For this
+     project, we do not distinguish non-sorting initial words (like
+     <i>a</i>, <i>an</i>, and <i>the</i> in English) from the rest of the title and
+     place the entire title in the &lt;title&gt; element.
+</p></div>
+
+</div>
+
+<div id="outline-container-7-2-10-2" class="outline-5">
+<h5 id="sec-7-2-10-2"><span class="section-number-5">7.2.10.2</span> &lt;name&gt;</h5>
+<div class="outline-text-5" id="text-7-2-10-2">
+
+<ul>
+<li>The &lt;name&gt; elements (there may none, or there may be more than
+      one) are used to record the names of the people or organizations
+      who are responsible for the constituent &ndash; usually, this is
+      simply the author of the piece.
+
+<p>
+      The <i>&lt;name&gt;</i> is transcribed as it appears on the page and is
+      encoded in the <i>&lt;displayForm&gt;</i> element.  All <i>&lt;name&gt;</i> elements
+      shall include a <i>&lt;role&gt;</i> element, which shall designate the
+      generic role, <i>cre</i>, in the <i>&lt;roleTerm&gt;</i> subelement.
+</p></li>
+</ul>
+
+</div>
+
+</div>
+
+<div id="outline-container-7-2-10-3" class="outline-5">
+<h5 id="sec-7-2-10-3"><span class="section-number-5">7.2.10.3</span> &lt;language&gt;</h5>
+<div class="outline-text-5" id="text-7-2-10-3">
+
+<ul>
+<li>The &lt;language&gt; element shall contain the subelement
+      <i>&lt;languageTerm&gt;</i>, a three-letter code derived from the ISO639-2
+      standard, found at <a href="http://www.loc.gov/standards/iso639-2/">http://www.loc.gov/standards/iso639-2/</a>.  The
+      code form should be used.  In <i>Vozrozhdenie</i>, this will almost
+      always be <i>rus</i>.
+</li>
+</ul>
+
+</div>
+
+</div>
+
+<div id="outline-container-7-2-10-4" class="outline-5">
+<h5 id="sec-7-2-10-4"><span class="section-number-5">7.2.10.4</span> &lt;part&gt;</h5>
+<div class="outline-text-5" id="text-7-2-10-4">
+
+<p>     Contains a single &lt;extent&gt; element.
+</p>
+</div>
+
+<div id="outline-container-7-2-10-4-1" class="outline-6">
+<h6 id="sec-7-2-10-4-1"><span class="section-number-6">7.2.10.4.1</span> &lt;extent unit="page"&gt;</h6>
+<div class="outline-text-6" id="text-7-2-10-4-1">
+
+<ul>
+<li>The &lt;extent&gt; records the page or pages on which the constituent appears:
+<dl>
+<dt>when the item appears on a single page</dt><dd>
+<p>
+            encode the page number as a solitary <i>&lt;start&gt;</i> element.
+</p>
+
+
+<pre class="src src-xml">&lt;<span style="color: #a40000;">extent</span> <span style="color: #b35000;">unit</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">page</span><span style="color: #5c3566;">"</span>&gt;
+ &lt;<span style="color: #a40000;">start</span>&gt;3&lt;/<span style="color: #a40000;">start</span>&gt;
+&lt;/<span style="color: #a40000;">extent</span>&gt;
+</pre>
+
+
+</dd>
+<dt>when the item appears on multiple sequential pages</dt><dd>
+<p>
+            encode the first page in a <i>&lt;start&gt;</i> element and the last
+            page in an <i>&lt;end&gt;</i> element.
+</p>
+
+
+<pre class="src src-xml">&lt;<span style="color: #a40000;">extent</span> <span style="color: #b35000;">unit</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">page</span><span style="color: #5c3566;">"</span>&gt;
+ &lt;<span style="color: #a40000;">start</span>&gt;3&lt;/<span style="color: #a40000;">start</span>&gt;
+ &lt;<span style="color: #a40000;">end</span>&gt;4&lt;/<span style="color: #a40000;">end</span>&gt;
+&lt;/<span style="color: #a40000;">extent</span>&gt;
+</pre>
+
+
+</dd>
+<dt>when the item appears on non-sequential pages</dt><dd>
+<p>
+            encode the pages as a series in a <i>&lt;list&gt;</i> element, as in
+</p>
+
+
+<pre class="src src-xml">&lt;<span style="color: #a40000;">extent</span> <span style="color: #b35000;">unit</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">page</span><span style="color: #5c3566;">"</span>&gt;
+ &lt;<span style="color: #a40000;">list</span>&gt;3; 5&lt;/<span style="color: #a40000;">list</span>&gt;
+&lt;/<span style="color: #a40000;">extent</span>&gt;
+</pre>
+
+
+</dd>
+<dt>when the item appears on a mix of sequential and non-sequential pages</dt><dd>
+
+
+
+<pre class="src src-xml">&lt;<span style="color: #a40000;">extent</span> <span style="color: #b35000;">unit</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">page</span><span style="color: #5c3566;">"</span>&gt;
+ &lt;<span style="color: #a40000;">list</span>&gt;1-2; 5&lt;/<span style="color: #a40000;">list</span>&gt;
+&lt;/<span style="color: #a40000;">extent</span>&gt;
+</pre>
+
+
+<p>
+         For an article that starts on page 1, continues on page 2, and
+         then skips to page 5.
+</p></dd>
+</dl>
+
+</li>
+</ul>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-7-2-10-5" class="outline-5">
+<h5 id="sec-7-2-10-5"><span class="section-number-5">7.2.10.5</span> &lt;genre type="CCS"&gt;</h5>
+<div class="outline-text-5" id="text-7-2-10-5">
+
+<p>     The <i>&lt;genre type="CCS"&gt;</i> is determined from the docWorks configuration: for
+     articles and other editorial content, it will be <i>TextContent</i>;
+     for photographs, cartoons, and other illustrations, it will be
+     <i>Illustration</i>; for advertisements, is will be <i>SponsoredAd</i>.
+     Those &lt;relatedItem type="constituent"&gt; elements that contain
+     <i>other</i> constituents will have the genre <i>Section</i>.
+</p></div>
+
+</div>
+
+<div id="outline-container-7-2-10-6" class="outline-5">
+<h5 id="sec-7-2-10-6"><span class="section-number-5">7.2.10.6</span> Kinds of Constituents</h5>
+<div class="outline-text-5" id="text-7-2-10-6">
+
+
+</div>
+
+<div id="outline-container-7-2-10-6-1" class="outline-6">
+<h6 id="sec-7-2-10-6-1"><span class="section-number-6">7.2.10.6.1</span> TextContent</h6>
+<div class="outline-text-6" id="text-7-2-10-6-1">
+
+<p>      These are the most common sorts of constituents: articles,
+      notices, poems, stories, sports scores &ndash; all textual editorial
+      content.
+</p>
+<p>
+      A TextContent constituent may contain <i>other constituents</i>: in
+      particular, an article may contain illustrations.
+</p>
+</div>
+
+<div id="outline-container-7-2-10-6-1-1" class="outline-7">
+<h7 id="sec-7-2-10-6-1-1"><span class="section-number-7">7.2.10.6.1.1</span> Examples</h7>
+<div class="outline-text-7" id="text-7-2-10-6-1-1">
+
+<ul>
+<li id="sec-7-2-10-6-1-1-1">A basic article<br/>
+
+
+
+<pre class="src src-xml">&lt;<span style="color: #a40000;">relatedItem</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">constituent</span><span style="color: #5c3566;">"</span>&gt;
+ &lt;<span style="color: #a40000;">titleInfo</span>&gt;
+  &lt;<span style="color: #a40000;">title</span>&gt;&#1055;&#1080;&#1089;&#1100;&#1084;&#1072; &#1080;&#1079;&#1098; &#1043;&#1077;&#1088;&#1084;&#1072;&#1085;i&#1080;&lt;/<span style="color: #a40000;">title</span>&gt;
+ &lt;/<span style="color: #a40000;">titleInfo</span>&gt;
+ &lt;<span style="color: #a40000;">name</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">personal</span><span style="color: #5c3566;">"</span>&gt;
+  &lt;<span style="color: #a40000;">displayForm</span>&gt;&#1040;. &#1041;&#1091;&#1085;&#1075;&#1077;.&lt;/<span style="color: #a40000;">displayForm</span>&gt;
+  &lt;<span style="color: #a40000;">role</span>&gt;
+   &lt;<span style="color: #a40000;">roleTerm</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">code</span><span style="color: #5c3566;">"</span>&gt;cre&lt;/<span style="color: #a40000;">roleTerm</span>&gt;
+  &lt;/<span style="color: #a40000;">role</span>&gt;
+ &lt;/<span style="color: #a40000;">name</span>&gt;
+ &lt;<span style="color: #a40000;">language</span>&gt;
+  &lt;<span style="color: #a40000;">languageTerm</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">code</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">authority</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">iso639-2b</span><span style="color: #5c3566;">"</span>&gt;rus&lt;/<span style="color: #a40000;">languageTerm</span>&gt;
+ &lt;/<span style="color: #a40000;">language</span>&gt;
+ &lt;<span style="color: #a40000;">part</span>&gt;
+  &lt;<span style="color: #a40000;">extent</span> <span style="color: #b35000;">unit</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">page</span><span style="color: #5c3566;">"</span>&gt;
+   &lt;<span style="color: #a40000;">start</span>&gt;2&lt;/<span style="color: #a40000;">start</span>&gt;
+  &lt;/<span style="color: #a40000;">extent</span>&gt;
+ &lt;/<span style="color: #a40000;">part</span>&gt;
+ &lt;<span style="color: #a40000;">genre</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">CCS</span><span style="color: #5c3566;">"</span>&gt;TextContent&lt;/<span style="color: #a40000;">genre</span>&gt;
+&lt;/<span style="color: #a40000;">relatedItem</span>&gt;
+</pre>
+
+
 </li>
 </ul>
 <ul>
-<li id="sec-1-4-2">&lt;fileGrp ID="ALTOGRP" USE="OCR"&gt;<br/>
-     Like the <i>&lt;fileGrp&gt;</i> for images, but corresponding to the ALTO files.
+<li id="sec-7-2-10-6-1-1-2">An article with an embedded illustration<br/>
+
+
+
+<pre class="src src-xml">       &lt;<span style="color: #a40000;">relatedItem</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">constituent</span><span style="color: #5c3566;">"</span>&gt;
+ &lt;<span style="color: #a40000;">titleInfo</span>&gt;
+  &lt;<span style="color: #a40000;">title</span>&gt;&#1058;&#1077;&#1072;&#1090;&#1088;&#1100; &#1080; &#1052;&#1091;&#1079;&#1099;&#1082;&#1072;&lt;/<span style="color: #a40000;">title</span>&gt;
+ &lt;/<span style="color: #a40000;">titleInfo</span>&gt;
+
+ &lt;<span style="color: #a40000;">language</span>&gt;
+  &lt;<span style="color: #a40000;">languageTerm</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">code</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">authority</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">iso639-2b</span><span style="color: #5c3566;">"</span>&gt;rus&lt;/<span style="color: #a40000;">languageTerm</span>&gt;
+ &lt;/<span style="color: #a40000;">language</span>&gt;
+ &lt;<span style="color: #a40000;">part</span>&gt;
+  &lt;<span style="color: #a40000;">extent</span> <span style="color: #b35000;">unit</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">page</span><span style="color: #5c3566;">"</span>&gt;
+   &lt;<span style="color: #a40000;">start</span>&gt;4&lt;/<span style="color: #a40000;">start</span>&gt;
+  &lt;/<span style="color: #a40000;">extent</span>&gt;
+ &lt;/<span style="color: #a40000;">part</span>&gt;
+ &lt;<span style="color: #a40000;">genre</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">CCS</span><span style="color: #5c3566;">"</span>&gt;TextContent&lt;/<span style="color: #a40000;">genre</span>&gt;
+
+ &lt;<span style="color: #a40000;">relatedItem</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">constituent</span><span style="color: #5c3566;">"</span>&gt;
+  &lt;<span style="color: #a40000;">titleInfo</span>&gt;
+   &lt;<span style="color: #a40000;">title</span>&gt;&#1042;. &#1048;. &#1064;&#1086;&#1085;&#1090;&#1082;&#1086;&#1074;&#1089;&#1082;&#1072;&#1103;&lt;/<span style="color: #a40000;">title</span>&gt;
+  &lt;/<span style="color: #a40000;">titleInfo</span>&gt;
+  &lt;<span style="color: #a40000;">part</span>&gt;
+   &lt;<span style="color: #a40000;">extent</span> <span style="color: #b35000;">unit</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">page</span><span style="color: #5c3566;">"</span>&gt;
+    &lt;<span style="color: #a40000;">start</span>&gt;4&lt;/<span style="color: #a40000;">start</span>&gt;
+   &lt;/<span style="color: #a40000;">extent</span>&gt;
+  &lt;/<span style="color: #a40000;">part</span>&gt;
+  &lt;<span style="color: #a40000;">genre</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">CCS</span><span style="color: #5c3566;">"</span>&gt;Illustration&lt;/<span style="color: #a40000;">genre</span>&gt;
+ &lt;/<span style="color: #a40000;">relatedItem</span>&gt;
+&lt;/<span style="color: #a40000;">relatedItem</span>&gt;
+</pre>
+
+
 </li>
 </ul>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-7-2-10-6-2" class="outline-6">
+<h6 id="sec-7-2-10-6-2"><span class="section-number-6">7.2.10.6.2</span> Illustration</h6>
+<div class="outline-text-6" id="text-7-2-10-6-2">
+
+<p>      We use <i>Illustration</i> to refer to all kinds of graphic "art":
+      photographs, cartoons, charts, etc.  Most illustrations in
+      <i>Vozrozhdenie</i> (but not all) are accompanied by some sort of
+      <i>caption</i>: a line or two of text, usually beneath the graphic,
+      that describes the illustration, or names the creator of the
+      illustration, or both.
+</p>
+<p>
+      For docWorks processing, the caption should be used as the
+      &lt;title&gt;. 
+</p>
+</div>
+
+<div id="outline-container-7-2-10-6-2-1" class="outline-7">
+<h7 id="sec-7-2-10-6-2-1"><span class="section-number-7">7.2.10.6.2.1</span> Examples</h7>
+<div class="outline-text-7" id="text-7-2-10-6-2-1">
+
+
+
+
+<pre class="src src-xml">&lt;<span style="color: #a40000;">relatedItem</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">constituent</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">ID</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">c2</span><span style="color: #5c3566;">"</span>&gt;
+  &lt;<span style="color: #a40000;">titleInfo</span>&gt;
+   &lt;<span style="color: #a40000;">title</span>&gt;&#1052;&#1080;&#1090;&#1088;&#1086;&#1087;&#1086;&#1083;&#1080;&#1090;&#1098; &#1045;&#1074;&#1083;&#1086;&#1087;&#1081;&lt;/<span style="color: #a40000;">title</span>&gt;
+  &lt;/<span style="color: #a40000;">titleInfo</span>&gt;
+  &lt;<span style="color: #a40000;">language</span>&gt;
+   &lt;<span style="color: #a40000;">languageTerm</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">code</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">authority</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">iso639-2b</span><span style="color: #5c3566;">"</span>&gt;rus&lt;/<span style="color: #a40000;">languageTerm</span>&gt;
+  &lt;/<span style="color: #a40000;">language</span>&gt;
+  &lt;<span style="color: #a40000;">part</span>&gt;
+   &lt;<span style="color: #a40000;">extent</span> <span style="color: #b35000;">unit</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">page</span><span style="color: #5c3566;">"</span>&gt;
+    &lt;<span style="color: #a40000;">start</span>&gt;1&lt;/<span style="color: #a40000;">start</span>&gt;
+   &lt;/<span style="color: #a40000;">extent</span>&gt;
+  &lt;/<span style="color: #a40000;">part</span>&gt;
+  &lt;<span style="color: #a40000;">genre</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">CCS</span><span style="color: #5c3566;">"</span>&gt;Illustration&lt;/<span style="color: #a40000;">genre</span>&gt;
+ &lt;/<span style="color: #a40000;">relatedItem</span>&gt;
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-7-2-10-6-3" class="outline-6">
+<h6 id="sec-7-2-10-6-3"><span class="section-number-6">7.2.10.6.3</span> SponsoredAd</h6>
+<div class="outline-text-6" id="text-7-2-10-6-3">
+
+<p>      Advertisements are an important and plentiful constituent of
+      <i>Vozrozhdenie</i>.  They usually appear in blocks or sections (see
+      below); we do not attempt to assign them titles or creators.
+</p>
+</div>
+
+<div id="outline-container-7-2-10-6-3-1" class="outline-7">
+<h7 id="sec-7-2-10-6-3-1"><span class="section-number-7">7.2.10.6.3.1</span> Examples</h7>
+<div class="outline-text-7" id="text-7-2-10-6-3-1">
+
+
+
+
+<pre class="src src-xml">&lt;<span style="color: #a40000;">relatedItem</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">constituent</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">ID</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">c3</span><span style="color: #5c3566;">"</span>&gt;
+ &lt;<span style="color: #a40000;">titleInfo</span>&gt;
+  &lt;<span style="color: #a40000;">title</span>&gt;[Advertisement]&lt;/<span style="color: #a40000;">title</span>&gt;
+ &lt;/<span style="color: #a40000;">titleInfo</span>&gt;
+ &lt;<span style="color: #a40000;">language</span>&gt;
+  &lt;<span style="color: #a40000;">languageTerm</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">code</span><span style="color: #5c3566;">"</span> <span style="color: #b35000;">authority</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">iso639-2b</span><span style="color: #5c3566;">"</span>&gt;rus&lt;/<span style="color: #a40000;">languageTerm</span>&gt;
+ &lt;/<span style="color: #a40000;">language</span>&gt;
+ &lt;<span style="color: #a40000;">part</span>&gt;
+  &lt;<span style="color: #a40000;">extent</span> <span style="color: #b35000;">unit</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">page</span><span style="color: #5c3566;">"</span>&gt;
+  &lt;<span style="color: #a40000;">start</span>&gt;3&lt;/<span style="color: #a40000;">start</span>&gt;
+ &lt;/<span style="color: #a40000;">extent</span>&gt;
+ &lt;/<span style="color: #a40000;">part</span>&gt;
+ &lt;<span style="color: #a40000;">genre</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">CCS</span><span style="color: #5c3566;">"</span>&gt;SponsoredAd&lt;/<span style="color: #a40000;">genre</span>&gt;
+&lt;/<span style="color: #a40000;">relatedItem</span>&gt;
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-7-2-10-6-4" class="outline-6">
+<h6 id="sec-7-2-10-6-4"><span class="section-number-6">7.2.10.6.4</span> Section</h6>
+<div class="outline-text-6" id="text-7-2-10-6-4">
+
+<p>      A section is a "composite constituent": it contains other
+      constituents.  Advertising blocks are encoded as sections;
+      named sections of the paper are encoded as sections, too.
+</p>
+</div>
+
+<div id="outline-container-7-2-10-6-4-1" class="outline-7">
+<h7 id="sec-7-2-10-6-4-1"><span class="section-number-7">7.2.10.6.4.1</span> Examples</h7>
+<div class="outline-text-7" id="text-7-2-10-6-4-1">
+
+
+
+
+<pre class="src src-xml">&lt;<span style="color: #a40000;">relatedItem</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">constituent</span><span style="color: #5c3566;">"</span>&gt;
+ &lt;<span style="color: #a40000;">titleInfo</span>&gt;
+  &lt;<span style="color: #a40000;">title</span>&gt;&#1051;&#1080;&#1090;&#1077;&#1088;&#1072;&#1090;&#1091;&#1088;&#1072;, &#1082;&#1088;&#1080;&#1090;&#1080;&#1082;&#1072; &#1080; &#1080;&#1089;&#1082;&#1091;&#1089;&#1089;&#1090;&#1074;&#1086;&lt;/<span style="color: #a40000;">title</span>&gt;
+ &lt;/<span style="color: #a40000;">titleInfo</span>&gt;
+ &lt;<span style="color: #a40000;">part</span>&gt;
+  &lt;<span style="color: #a40000;">extent</span> <span style="color: #b35000;">unit</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">page</span><span style="color: #5c3566;">"</span>&gt;
+   &lt;<span style="color: #a40000;">start</span>&gt;3&lt;/<span style="color: #a40000;">start</span>&gt;
+  &lt;/<span style="color: #a40000;">extent</span>&gt;
+ &lt;/<span style="color: #a40000;">part</span>&gt;
+ &lt;<span style="color: #a40000;">genre</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">CCS</span><span style="color: #5c3566;">"</span>&gt;Section&lt;/<span style="color: #a40000;">genre</span>&gt;
+
+ &lt;<span style="color: #a40000;">relatedItem</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">constituent</span><span style="color: #5c3566;">"</span>&gt;
+  &lt;<span style="color: #a40000;">titleInfo</span>&gt;
+   &lt;<span style="color: #a40000;">title</span>&gt;"&#1052;&#1072;&#1096;&#1077;&#1085;&#1100;&#1082;&#1072;"&lt;/<span style="color: #a40000;">title</span>&gt;
+  &lt;/<span style="color: #a40000;">titleInfo</span>&gt;
+  &lt;<span style="color: #a40000;">part</span>&gt;
+   &lt;<span style="color: #a40000;">extent</span> <span style="color: #b35000;">unit</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">page</span><span style="color: #5c3566;">"</span>&gt;
+    &lt;<span style="color: #a40000;">start</span>&gt;3&lt;/<span style="color: #a40000;">start</span>&gt;
+   &lt;/<span style="color: #a40000;">extent</span>&gt;
+  &lt;/<span style="color: #a40000;">part</span>&gt;
+  &lt;<span style="color: #a40000;">genre</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">CCS</span><span style="color: #5c3566;">"</span>&gt;TextContent&lt;/<span style="color: #a40000;">genre</span>&gt;
+ &lt;/<span style="color: #a40000;">relatedItem</span>&gt;
+
+ &lt;<span style="color: #a40000;">relatedItem</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">constituent</span><span style="color: #5c3566;">"</span>&gt;
+  &lt;<span style="color: #a40000;">titleInfo</span>&gt;
+   &lt;<span style="color: #a40000;">title</span>&gt;"&#1047;&#1086;&#1083;&#1086;&#1090;&#1086;&#1081; &#1091;&#1079;&#1086;&#1088;&#1098;"&lt;/<span style="color: #a40000;">title</span>&gt;
+  &lt;/<span style="color: #a40000;">titleInfo</span>&gt;
+  &lt;<span style="color: #a40000;">part</span>&gt;
+   &lt;<span style="color: #a40000;">extent</span> <span style="color: #b35000;">unit</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">page</span><span style="color: #5c3566;">"</span>&gt;
+    &lt;<span style="color: #a40000;">start</span>&gt;3&lt;/<span style="color: #a40000;">start</span>&gt;
+   &lt;/<span style="color: #a40000;">extent</span>&gt;
+  &lt;/<span style="color: #a40000;">part</span>&gt;
+  &lt;<span style="color: #a40000;">genre</span> <span style="color: #b35000;">type</span>=<span style="color: #5c3566;">"</span><span style="color: #5c3566;">CCS</span><span style="color: #5c3566;">"</span>&gt;TextContent&lt;/<span style="color: #a40000;">genre</span>&gt;
+ &lt;/<span style="color: #a40000;">relatedItem</span>&gt;
+&lt;/<span style="color: #a40000;">relatedItem</span>&gt;       
+</pre>
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-7-3" class="outline-3">
+<h3 id="sec-7-3"><span class="section-number-3">7.3</span> ALTO Profile</h3>
+<div class="outline-text-3" id="text-7-3">
+
+<p>   For each page, an encoded representation of the layout and the
+   machine-readable text on the page shall be provided, using the
+   ALTO schema, version 2.0 or higher, with the following
+   specifications, adopted from the NDNP:
+</p>
+<ul>
+<li>The text shall be encoded in the natural reading order of the
+     language in which the text is written;
+</li>
+<li>Point size and font data to at least the word level shall be included;
+</li>
+<li>The ALTO file shall include bounding-box coordinates to at least
+     the word level;
+</li>
+<li>Non-rectangular blocks shall not be used.  Some illustrations
+     may format as "tight" in the document.
+</li>
+</ul>
+
+
 </div>
 </div>
 </div>
