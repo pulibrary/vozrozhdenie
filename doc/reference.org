@@ -301,27 +301,158 @@
 **** <structMap type="PHYSICAL">
 **** <structMap type="LOGICAL">
 ***** The <div> hierarchy
+      The outlines below show the hierarchical relationship among the
+      <div> elements in the logical structMap.  Each div is described
+      more fully below.
+
       - Newspaper
-	- Volume
-	  - Issue
-	    - Title_Section
-	    - Content
-	      - { Article* | Illustration* | SponsoredAd* | Section* }
+	- Volume+
+	  - Issue+
+	    - Contents
+	      - { Article* | Illustration* | Section* }
+	    - Advertisements
+	      - { SponsoredAd+ | Section* }
 
       - Article
-	- Heading*
-	  - Title?
-	  - Author*
+	- Header*
+	  - Head+
+	  - Byline*
 	- Body
-	  - Body_Content
+	  - { Paragraph* | Section* }
+
+      - Illustration
+	- Graphic+
+	- Caption?
+	  - Paragraph+
+
+      - SponsoredAd
+	- { Graphic* | Paragraph* }
 
       - Section
-	- Heading?
+	- Header?
 	- Body
 	  - { Article* | Illustration* | SponsoredAd* | Section* }
 
-      - Body_Content
-	- { Paragraph* | Section* }
+      - Paragraph
+	- TextBlock+
+
+****** <div TYPE="Newspaper">
+       The root <div> of the logical structMap is <div
+       TYPE="Newspaper">.  It must contain one or more <div
+       TYPE="Volume"> elements (in practice it will contain only
+       one).
+       
+       Attributes:
+       - TYPE :: must be "Newspaper"
+
+       - LABEL :: The name of the paper (ВОЗРОЖДЕНIЕ), the issue
+		  number, and the date of publication
+****** <div TYPE="VOLUME">
+       A <div> representing a (possibly) bound volume of issues.  In
+       this project, we are representing each issue of the newspaper
+       as a separate digital object, so the <div TYPE="VOLUME">
+       element will in practice contain only one <div TYPE="ISSUE">.
+
+       Attributes:
+       - TYPE :: must be "VOLUME"
+       - LABEL :: (To be determined)
+****** <div TYPE="ISSUE">
+       A <div> representing the actual issue.  It contains the
+       "contents" of the paper: the editorial content and the
+       advertisements.
+
+       Attributes:
+       - TYPE :: must be "ISSUE"
+       - LABEL :: The issue number and the date of publication
+       - DMDID :: the ID of the <dmdSec> for the object (in practice,
+                  always "dmd1")
+****** <div TYPE="Contents">
+       This is the container <div> for the contents of the
+       newspaper.  It has two sub-divs: one for editorial content,
+       one for advertising.
+
+       Attributes:
+       - TYPE :: must be "Contents"
+       - LABEL :: should be "Contents"
+
+****** <div TYPE="Article">
+       A <div> representing a piece of editorial content.
+
+       Editorial content takes a number of forms: it may or may not
+       have a headline; it may or may not have a byline; it may have
+       subsections, each with its own headline (subhead).
+
+       An ARTICLE <div> MAY contain a <div TYPE="Header">; it will
+       always have a <div TYPE="Body">.
+
+       Attributes:
+       - TYPE :: must be "Article"
+       - DMDID :: the ID of the <mods:relatedItem type="constituent">
+                  element corresponding to this piece in the newspaper.
+       - LABEL :: SHOULD be equivalent to the contents of the
+                  mods:relatedItem/mods:titleInfo/mods:title element
+
+****** <div TYPE="Header">
+       A <div> containing the component's (the Article, SponsoredAd,
+       or Section) heading information: a combination of headline and
+       byline.  The Header may contain one or more Head elements
+       (encompassing, for example, a headline and a subhead); it may
+       also contain one or more Byline elements (which may not
+       necessarily be physically contiguous in the physical layout of
+       the page).
+
+       Attributes:
+       - TYPE :: must be "Header"
+
+****** <div TYPE="Head">
+       A <div> designating the region associated with a head of some
+       kind: a headline, a subhead, etc.
+
+       Attributes:
+       - TYPE :: must be "Head"
+****** <div TYPE="Byline">
+       A <div> designating one or more regions associated with the
+       writer of an article: usually the writer's name, but sometimes
+       also the writer's position or other biographical information.
+
+       Attributes:
+       - TYPE :: must be "Byline"
+
+
+****** <div TYPE="Body">
+       A container <div> for the body of an article or
+       section.  A BODY may contain paragraphs, illustrations, or
+       sections, in any order.
+
+****** <div TYPE="Paragraph">
+       A <div> that contains one or more text blocks representing the
+       contents of a logical paragraph.  Paragraphs have a sequential
+       order within their containing article, caption, or sponsored
+       ad.
+
+       Attributes:
+       - TYPE :: must be "Paragraph"
+       - ORDER :: the index of the paragraph in its containing div
+                  (1, 2, etc.).
+
+****** <div TYPE="Section">
+       A section is a container <div> of other <div>s.  It may or may
+       not have a Header; it will contain some combination of
+       articles, illustrations, SponsoredAds, and other sections.
+
+****** <div TYPE="Illustration">
+
+****** <div TYPE="Graphic">
+       A div designating the location of a graphic on the page.
+
+
+****** <div TYPE="Caption">
+
+****** <div TYPE="SponsoredAd">
+
+****** <div TYPE="TextBlock">
+       A div designating the region of a block of text on a page.
+
 
 ** MODS Profile
    #+BEGIN_SRC xml
