@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Sample METS for Vozrozhdenie -->
+
+<mets xmlns="http://www.loc.gov/METS/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd"
+ TYPE="Newspaper" OBJID="urn:PUL:newspaper:vozrozhdenie_1925-06-03_01"
+ LABEL="vozrozhdenie_1925-06-03_01">
+ <metsHdr>
+  <agent ROLE="CREATOR" TYPE="ORGANIZATION">
+   <name>Princeton University Library, Digital Initiatives</name>
+   <note><!-- DDD's docWorks ID can go here. --></note>
+  </agent>
+  <metsDocumentID TYPE="URN">urn:PUL:newspaper:td:vozrozhdenie_1925-06-03_01</metsDocumentID>
+ </metsHdr>
+ <dmdSec ID="dmd1">
+  <mdWrap MDTYPE="MODS">
+   <xmlData>
+    <mods xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/mods/v3/mods-3-4.xsd">
+     <recordInfo>
+      <recordIdentifier>urn:PUL:newspaper:dmd:vozrozhdenie_1925-06-03_01</recordIdentifier>
+     </recordInfo>
+     <identifier type="PUL">urn:PUL:newspaper:vozrozhdenie_1925-06-03_01</identifier>
+     <language>
+      <languageTerm type="code" authority="iso639-2b">rus</languageTerm>
+     </language>
+     <titleInfo>
+      <title>ВОЗРОЖДЕНIЕ</title>
+     </titleInfo>
+     <originInfo>
+      <dateIssued keyDate="yes" encoding="iso8601">1926-06-03</dateIssued>
+     </originInfo>
+     <part type="issue">
+      <detail type="number">
+       <number>1</number>
+      </detail>
+     </part>
+     <genre>Newspapers-Issue</genre>
+     <relatedItem type="host" xlink:type="simple" xlink:href="urn:PUL:newspaper:vozrozhdenie">
+      <recordInfo>
+       <recordIdentifier>urn:PUL:newspaper:dmd:vozrozhdenie</recordIdentifier>
+      </recordInfo>
+     </relatedItem>
+
+     <!-- A sample textual constitutent -->
+     <relatedItem type="constituent" ID="c1">
+      <titleInfo>
+       <title>ПРАВОСЛАВНЫЙ КАЛЕНДАРЬ.</title>
+      </titleInfo>
+      <language>
+       <languageTerm type="code" authority="iso639-2b">rus</languageTerm>
+      </language>
+      <part>
+       <extent unit="page">
+        <start>1</start>
+       </extent>
+      </part>
+      <genre type="CCS">TextContent</genre>
+     </relatedItem>
+
+     <relatedItem type="constituent">
+      <titleInfo>
+       <title>Письма изъ Германiи</title>
+      </titleInfo>
+      <name type="personal">
+       <displayForm>А. Бунге.</displayForm>
+       <role>
+        <roleTerm type="code">cre</roleTerm>
+       </role>
+      </name>
+      <language>
+       <languageTerm type="code" authority="iso639-2b">rus</languageTerm>
+      </language>
+      <part>
+       <extent unit="page">
+        <start>2</start>
+       </extent>
+      </part>
+      <genre type="CCS">TextContent</genre>
+     </relatedItem>
+
+     <!-- An article with an embedded illustration -->
+     <relatedItem type="constituent">
+      <titleInfo>
+       <title>Театрь и Музыка</title>
+      </titleInfo>
+
+      <language>
+       <languageTerm type="code" authority="iso639-2b">rus</languageTerm>
+      </language>
+      <part>
+       <extent unit="page">
+        <start>4</start>
+       </extent>
+      </part>
+      <genre type="CCS">TextContent</genre>
+
+      <relatedItem type="constituent">
+       <titleInfo>
+        <title>В. И. Шонтковская</title>
+       </titleInfo>
+       <part>
+        <extent unit="page">
+         <start>4</start>
+        </extent>
+       </part>
+       <genre type="CCS">Illustration</genre>
+      </relatedItem>
+     </relatedItem>
+
+
+     <!-- A sample illustration -->
+     <relatedItem type="constituent" ID="c2">
+      <titleInfo>
+       <title>Митрополитъ Евлопй</title>
+      </titleInfo>
+      <language>
+       <languageTerm type="code" authority="iso639-2b">rus</languageTerm>
+      </language>
+      <part>
+       <extent unit="page">
+        <start>1</start>
+       </extent>
+      </part>
+      <genre type="CCS">Illustration</genre>
+     </relatedItem>
+
+
+     <!-- A sample advertisement: -->
+     <relatedItem type="constituent" ID="c3">
+      <titleInfo>
+       <title>[Advertisement]</title>
+      </titleInfo>
+      <language>
+       <languageTerm type="code" authority="iso639-2b">rus</languageTerm>
+      </language>
+      <part>
+       <extent unit="page">
+       <start>3</start>
+      </extent>
+      </part>
+      <genre type="CCS">SponsoredAd</genre>
+     </relatedItem>
+
+     <!-- A sample section -->
+     <relatedItem type="constituent">
+      <titleInfo>
+       <title>Литература, критика и искусство</title>
+      </titleInfo>
+      <part>
+       <extent unit="page">
+        <start>3</start>
+       </extent>
+      </part>
+      <genre type="CCS">Section</genre>
+
+      <relatedItem type="constituent">
+       <titleInfo>
+        <title>"Машенька"</title>
+       </titleInfo>
+       <part>
+        <extent unit="page">
+         <start>3</start>
+        </extent>
+       </part>
+       <genre type="CCS">TextContent</genre>
+      </relatedItem>
+
+      <relatedItem type="constituent">
+       <titleInfo>
+        <title>"Золотой узоръ"</title>
+       </titleInfo>
+       <part>
+        <extent unit="page">
+         <start>3</start>
+        </extent>
+       </part>
+       <genre type="CCS">TextContent</genre>
+      </relatedItem>
+     </relatedItem>
+
+    </mods>
+   </xmlData>
+  </mdWrap>
+ </dmdSec>
+
+ <!--Use a single administrative section (<amdSec>) as a 
+        wrapper for the technical metadata for all the images-->
+ <amdSec>
+  <techMD ID="techmd1">
+   <!-- technical metadata (MIX) for first image -->
+   <mdWrap MDTYPE="NISOIMG">
+    <!-- The technical metadata docWorks provides goes here -->
+   </mdWrap>
+  </techMD>
+  <techMD ID="techmd2">
+   <!-- technical metadata for the second image -->
+   <mdWrap MDTYPE="NISOIMG"/>
+  </techMD>
+
+  <!-- <techMD> elements for remaining image files -->
+ </amdSec>
+
+
+
+ <fileSec>
+  <fileGrp ID="IMGGRP" USE="Images">
+
+   <!-- Note that the AMDID attribute contains the ID of the
+      <techMD> element corresponding to the file. Note, too,
+      the use of the GROUPID attribute, which groups together
+      the image file and its corresponding ALTO file. -->
+
+   <file ID="IMG001" ADMID="techmd1" GROUPID="page1" MIMETYPE="image/jp2" CHECKSUM="xxxx"
+    CHECKSUMTYPE="SHA-1">
+    <FLocat LOCTYPE="URL" xlink:href="file://./vozrozhdenie_1925-06-03_01_001.jp2"/>
+   </file>
+   <file ID="IMG002" ADMID="techmd2" GROUPID="page2" MIMETYPE="image/jp2" CHECKSUM="xxxx"
+    CHECKSUMTYPE="SHA-1">
+    <FLocat LOCTYPE="URL" xlink:href="file://./vozrozhdenie_1925-06-03_01_002.jp2"/>
+   </file>
+  </fileGrp>
+
+  <fileGrp ID="ALTOGRP" USE="OCR">
+   <file ID="ALTO001" GROUPID="page1" MIMETYPE="text/xml" CHECKSUM="xxxx" CHECKSUMTYPE="SHA-1">
+    <FLocat LOCTYPE="URL" xlink:href="file://./vozrozhdenie_1925-06-03_01_001.alto.xml"/>
+   </file>
+   <file ID="ALTO002" GROUPID="page2" MIMETYPE="text/xml" CHECKSUM="xxxx" CHECKSUMTYPE="SHA-1">
+    <FLocat LOCTYPE="URL" xlink:href="file://./vozrozhdenie_1925-06-03_01_002.alto.xml"/>
+   </file>
+  </fileGrp>
+ </fileSec>
+
+
+ <structMap TYPE="PHYSICAL">
+  <div ID="PSM" LABEL="ВОЗРОЖДЕНIЕ" TYPE="Newspaper" DMDID="dmd1">
+   <div ID="PSM.1" ORDER="1" ORDERLABEL="1" TYPE="PAGE">
+    <fptr>
+     <par>
+      <area FILEID="IMG001"/>
+      <area FILEID="ALTO001" BETYPE="IDREF" BEGIN="P1"/>
+     </par>
+    </fptr>
+   </div>
+
+   <!-- Here go <div type="PAGE"> elements for each page. -->
+  </div>
+ </structMap>
+ <structMap TYPE="LOGICAL">
+  <div>
+   <fptr/>
+  </div>
+ </structMap>
+</mets>
