@@ -14,26 +14,26 @@
 #+LINK_HOME: 
 #+XSLT:
 
-* Some Details
-  Scope: 28,557 page images
 * Input Files
-  Princeton shot the original pages as 24-bit RGB TIFF files at a
-  resolution of 7200 pixels on the long side, then, to improve OCR,
-  created grayscale derivatives with level adjustments: black 10,
-  white 215, gama 1.15.
+  There are approximately 28,500 page images.  Princeton shot the
+  original pages as 24-bit RGB TIFF files at a resolution of 7200
+  pixels on the long side, then, to improve OCR, created grayscale
+  derivatives with level adjustments: black 10, white 215, gamma 1.15.
 * Output Files
   DDD will deliver the following objects for ingestion into Veridian:
 
   - One METS XML file for each issue, conforming with METS schema
     version 1.9 (http://www.loc.gov/standards/mets/version19/mets.xsd).  See
-    Section N for details of METS use.
+   the [[*METS%20Profile][METS Profile]] section for details of METS use.
   - One ALTO XML file for each page, conforming with ALTO schema
-    version 2.0.  See Section N for details.
-  - One JPEG 2000 image file for each page. (See section N)
-  - One PDF file with bookmarks for each issue. (See section N)
+    version 2.0.  See the [[*ALTO%20Profile][ALTO Profile]] section for details.
+  - One JPEG 2000 image file for each page. (See [[*JPEG2000%20Specification][JPEG2000 Specification]])
+  - One PDF file with bookmarks for each issue.
 
   Deliverables shall be sent directly to Princeton for ingestion
   into Veridian.
+* Markup Policy
+  [ To be supplied by DDD and refined here. ]
 * JPEG2000 Specification
    To generate a JP2000 using Kakadu, use the following recipe (taken
    from /The National Digital Newspaper Program (NDNP) Technical
@@ -453,7 +453,6 @@
 ****** <div TYPE="TextBlock">
        A div designating the region of a block of text on a page.
 
-
 ** MODS Profile
    #+BEGIN_SRC xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -872,7 +871,6 @@
       </relatedItem>
      </relatedItem>       
        #+END_SRC
-
 
 ** ALTO Profile
    For each page, an encoded representation of the layout and the
